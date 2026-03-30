@@ -477,7 +477,7 @@ def run_scheduler(hour: int, minute: int, **job_kwargs) -> None:
 
 def parse_args(argv=None):
     parser = argparse.ArgumentParser(description="Run VCP scan once or on a daily schedule.")
-    parser.add_argument("--mode", choices=["once", "schedule"], default="once")
+    parser.add_argument("--mode", choices=["once", "schedule"], default="schedule")
     parser.add_argument("--schedule-hour", type=int, default=6)
     parser.add_argument("--schedule-minute", type=int, default=0)
     parser.add_argument("--base-dir", default=".")
