@@ -1,0 +1,2 @@
+symbol,price_source,status,last_close,daily_high,daily_low,daily_volume,daily_turnover,pivot_high,contractions_pct,volume_trend_ok,score,bars,note,score_delta
+AAPL,yahoo,vcp,248.8000030517578,255.4900054931641,248.07000732421875,47842500.0,11903214146.003723,260.8299865722656,7.95|6.12|4.92,True,4,260,,4.0

@@ -23,6 +23,18 @@ venv/bin/python main.py \
 	--excel vcp_scan.xlsx
 ```
 
+```bash
+venv/bin/python3 main.py \
+--max-tickers 12000 \
+--lookback-days 260 \
+--workers 12 \
+--csv 20260127_vcp_scan.csv \
+--excel 20260127_vcp_scan.xlsx \
+--symbol-source sec \
+--price-source yahoo \
+--score-delta-from vcp_scan.csv
+```
+
 Key flags (scan):
 - `--symbol-source {auto,nasdaq,sec}`: universe source (auto falls back to SEC/GitHub).
 - `--price-source {yahoo,futu}`: OHLCV source; for Futu, set `--futu-host`/`--futu-port`, optional `--futu-fallback-yahoo`.
@@ -55,3 +67,25 @@ venv/bin/python main.py \
 - Yahoo Finance may throttle; reduce `--workers` or split runs if rate-limited.
 - Futu requires a running OpenD instance; use `--futu-fallback-yahoo` to fall back per-symbol.
 - Outputs are heuristic, not trading advice—validate before use.
+
+## Daily 6:00 job (dated files + webhook)
+
+Use `vcp_daily_job.py` to run one-off or keep a process running that executes daily at 6:00.
+
+One-time run:
+
+```bash
+venv/bin/python vcp_daily_job.py --mode once --base-dir .
+```
+
+Scheduled run (every day at 6:00):
+
+```bash
+venv/bin/python vcp_daily_job.py --mode schedule --schedule-hour 6 --schedule-minute 0 --base-dir .
+```
+
+What it does each run:
+- Writes dated outputs: `YYYYMMDD_vcp_scan.csv` and `YYYYMMDD_vcp_scan.xlsx`.
+- Finds the most recent prior dated scan CSV and computes `score_delta` from it.
+- Filters symbols where `score == 4`.
+- Sends the result to `https://tgbot.www.vanportdev.com/msg/1348940059` with JSON body `{ "msg": "..." }`.

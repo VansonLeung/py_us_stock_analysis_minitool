@@ -1,0 +1,14 @@
+# One symbol per line. Lines starting with # are comments.
+# Focus symbols are always included in Telegram watchlist message,
+# even when score < 4.
+
+# Examples:
+# AAPL
+# NVDA
+
+AAPL
+CRTO
+MRVL
+REAX
+SATL
+SF

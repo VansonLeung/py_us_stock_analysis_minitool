@@ -41,6 +41,10 @@ class ScanRow:
     price_source: str
     status: str  # vcp, no_pattern, fetch_error
     last_close: Optional[float]
+    daily_high: Optional[float]
+    daily_low: Optional[float]
+    daily_volume: Optional[float]
+    daily_turnover: Optional[float]
     pivot_high: Optional[float]
     contractions_pct: str
     volume_trend_ok: Optional[bool]
@@ -246,6 +250,18 @@ def detect_vcp(df: pd.DataFrame) -> Optional[VCPResult]:
     score += 2 if decreasing_drops else 0
     score += 1 if volume_ok else 0
     score += 1 if near_pivot else 0
+
+    # Optional elite rating: exceptionally tight/clean VCPs become score 5.
+    if score == 4:
+        drop_ratio_1 = drops[1] / drops[0] if drops[0] > 0 else 1.0
+        drop_ratio_2 = drops[2] / drops[1] if drops[1] > 0 else 1.0
+        very_near_pivot = last_close >= 0.985 * pivot_high
+        strong_volume_dryup = volumes[2] <= 0.7 * volumes[0] if volumes[0] > 0 else False
+        tight_final_drop = drops[2] <= 0.06
+        smooth_shrink = drop_ratio_1 <= 0.8 and drop_ratio_2 <= 0.8
+        if very_near_pivot and strong_volume_dryup and tight_final_drop and smooth_shrink:
+            score = 5
+
     if score == 0:
         return None
 
@@ -256,6 +272,8 @@ def detect_vcp(df: pd.DataFrame) -> Optional[VCPResult]:
         note_parts.append("volume not contracting")
     if not near_pivot:
         note_parts.append("price not near pivot")
+    if score == 5:
+        note_parts.append("perfect vcp setup")
 
     return VCPResult(
         symbol=df.attrs.get("symbol", ""),
@@ -407,6 +425,10 @@ def analyze_symbol(
                 price_source=price_source,
                 status="fetch_error",
                 last_close=None,
+                daily_high=None,
+                daily_low=None,
+                daily_volume=None,
+                daily_turnover=None,
                 pivot_high=None,
                 contractions_pct="",
                 volume_trend_ok=None,
@@ -418,6 +440,10 @@ def analyze_symbol(
 
         vcp = detect_vcp(df)
         last_close = float(df["Close"].iloc[-1])
+        daily_high = float(df["High"].iloc[-1])
+        daily_low = float(df["Low"].iloc[-1])
+        daily_volume = float(df["Volume"].iloc[-1])
+        daily_turnover = float(last_close * daily_volume)
         bars = len(df)
         if vcp:
             row = ScanRow(
@@ -425,6 +451,10 @@ def analyze_symbol(
                 price_source=price_source,
                 status="vcp",
                 last_close=last_close,
+            daily_high=daily_high,
+            daily_low=daily_low,
+            daily_volume=daily_volume,
+            daily_turnover=daily_turnover,
                 pivot_high=vcp.pivot_high,
                 contractions_pct="|".join(map(str, vcp.contractions)),
                 volume_trend_ok=vcp.volume_trend_ok,
@@ -439,6 +469,10 @@ def analyze_symbol(
             price_source=price_source,
             status="no_pattern",
             last_close=last_close,
+            daily_high=daily_high,
+            daily_low=daily_low,
+            daily_volume=daily_volume,
+            daily_turnover=daily_turnover,
             pivot_high=None,
             contractions_pct="",
             volume_trend_ok=None,
@@ -453,6 +487,10 @@ def analyze_symbol(
             price_source=price_source,
             status="fetch_error",
             last_close=None,
+            daily_high=None,
+            daily_low=None,
+            daily_volume=None,
+            daily_turnover=None,
             pivot_high=None,
             contractions_pct="",
             volume_trend_ok=None,
@@ -671,6 +709,10 @@ def save_outputs(rows: List[ScanRow], csv_path: Optional[str], excel_path: Optio
             "price_source": [r.price_source for r in rows],
             "status": [r.status for r in rows],
             "last_close": [r.last_close for r in rows],
+            "daily_high": [r.daily_high for r in rows],
+            "daily_low": [r.daily_low for r in rows],
+            "daily_volume": [r.daily_volume for r in rows],
+            "daily_turnover": [r.daily_turnover for r in rows],
             "pivot_high": [r.pivot_high for r in rows],
             "contractions_pct": [r.contractions_pct for r in rows],
             "volume_trend_ok": [r.volume_trend_ok for r in rows],

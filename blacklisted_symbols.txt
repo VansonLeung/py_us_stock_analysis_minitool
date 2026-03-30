@@ -1,0 +1,37 @@
+# One symbol per line. Lines starting with # are comments.
+# These symbols are excluded from score>=4 filtered CSV/XLSX and Telegram notifications.
+
+# Examples:
+# AAPL
+# TSLA
+
+WOK
+TWG
+STFS
+SOUL
+RMWWW
+INEO
+KORE
+LGCB
+HG
+HKPD
+CLGN
+SSSSL
+MBRX
+NPACU
+SAJ
+ASPC
+BCSF
+BRN
+CMSC
+CVRX
+EOT
+FITBI
+JCSE
+LGCB
+LSAK
+NMI
+PFSI
+RILYZ
+DCOMP
+SIRI
