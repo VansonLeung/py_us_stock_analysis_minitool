@@ -40,3 +40,5 @@ futu_vcp_scan*.xlsx
 vcp_enriched*.csv
 vcp_enriched*.xlsx
 vcp_scan_filtered/
+
+history_data/

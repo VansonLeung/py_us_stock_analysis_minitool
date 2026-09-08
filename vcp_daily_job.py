@@ -13,23 +13,23 @@ import yfinance as yf
 import main as scanner
 
 
-WEBHOOK_URL = "https://tgbot.www.vanportdev.com/msg/1348940059"
+WEBHOOK_URL = "https://tgbot.www.vanportdev.com/msg/1348940059/1"
 BLACKLIST_FILE_NAME = "blacklisted_symbols.txt"
 FOCUS_FILE_NAME = "focus_symbols.txt"
 TELEGRAM_MSG_MAX_CHARS = 3500
 SECTION_ROWS_PER_BLOCK = 20
 
 
-def _dated_output_paths(base_dir: Path, day: dt.date) -> tuple[Path, Path]:
+def _dated_output_paths(history_dir: Path, day: dt.date) -> tuple[Path, Path]:
     date_key = day.strftime("%Y%m%d")
-    return base_dir / f"{date_key}_vcp_scan.csv", base_dir / f"{date_key}_vcp_scan.xlsx"
+    return history_dir / f"{date_key}_vcp_scan.csv", history_dir / f"{date_key}_vcp_scan.xlsx"
 
 
-def _filtered_output_paths(base_dir: Path, day: dt.date) -> tuple[Path, Path]:
+def _filtered_output_paths(history_dir: Path, day: dt.date) -> tuple[Path, Path]:
     date_key = day.strftime("%Y%m%d")
     return (
-        base_dir / f"{date_key}_vcp_scan_score4plus_filtered.csv",
-        base_dir / f"{date_key}_vcp_scan_score4plus_filtered.xlsx",
+        history_dir / f"{date_key}_vcp_scan_score4plus_filtered.csv",
+        history_dir / f"{date_key}_vcp_scan_score4plus_filtered.xlsx",
     )
 
 
@@ -46,9 +46,9 @@ def _parse_dated_scan_filename(path: Path) -> Optional[dt.date]:
         return None
 
 
-def _find_previous_scan_csv(base_dir: Path, today: dt.date) -> Optional[Path]:
+def _find_previous_scan_csv(history_dir: Path, today: dt.date) -> Optional[Path]:
     dated_files: list[tuple[dt.date, Path]] = []
-    for path in base_dir.glob("*_vcp_scan.csv"):
+    for path in history_dir.glob("*_vcp_scan.csv"):
         day = _parse_dated_scan_filename(path)
         if day is None:
             continue
@@ -60,9 +60,9 @@ def _find_previous_scan_csv(base_dir: Path, today: dt.date) -> Optional[Path]:
     return dated_files[0][1]
 
 
-def _list_dated_scan_csvs(base_dir: Path, today: dt.date) -> list[tuple[dt.date, Path]]:
+def _list_dated_scan_csvs(history_dir: Path, today: dt.date) -> list[tuple[dt.date, Path]]:
     dated_files: list[tuple[dt.date, Path]] = []
-    for path in base_dir.glob("*_vcp_scan.csv"):
+    for path in history_dir.glob("*_vcp_scan.csv"):
         day = _parse_dated_scan_filename(path)
         if day is None or day > today:
             continue
@@ -71,9 +71,9 @@ def _list_dated_scan_csvs(base_dir: Path, today: dt.date) -> list[tuple[dt.date,
     return dated_files
 
 
-def _consecutive_score4plus_days(base_dir: Path, today: dt.date) -> dict[str, int]:
+def _consecutive_score4plus_days(history_dir: Path, today: dt.date) -> dict[str, int]:
     days_by_symbol: dict[str, int] = {}
-    dated_files = _list_dated_scan_csvs(base_dir, today)
+    dated_files = _list_dated_scan_csvs(history_dir, today)
     if not dated_files:
         return days_by_symbol
 
@@ -197,7 +197,7 @@ def _build_message(
     full_scan_frame: pd.DataFrame,
     blacklisted_symbols: set[str],
     focus_symbols: set[str],
-    base_dir: Path,
+    history_dir: Path,
 ) -> str:
     if full_scan_frame.empty or "symbol" not in full_scan_frame.columns:
         return (
@@ -222,7 +222,7 @@ def _build_message(
     frame["score_delta"] = pd.to_numeric(frame["score_delta"], errors="coerce").fillna(0)
     frame["prev_score"] = frame["score"] - frame["score_delta"]
 
-    streak_days = _consecutive_score4plus_days(base_dir, today)
+    streak_days = _consecutive_score4plus_days(history_dir, today)
     frame["days_ge_4"] = frame["symbol"].map(lambda s: streak_days.get(str(s).upper(), 0))
 
     # Focus section always visible and on top.
@@ -389,6 +389,7 @@ def _post_file(file_path: Path, timeout: int = 40) -> None:
 
 def run_vcp_job(
     base_dir: Path,
+    history_dir: Path,
     max_tickers: int,
     lookback_days: int,
     workers: int,
@@ -405,9 +406,9 @@ def run_vcp_job(
     focus_path = base_dir / FOCUS_FILE_NAME
     blacklisted_symbols = _load_blacklisted_symbols(blacklist_path)
     focus_symbols = _load_focus_symbols(focus_path)
-    csv_path, xlsx_path = _dated_output_paths(base_dir, today)
-    score4plus_csv_path, score4plus_xlsx_path = _filtered_output_paths(base_dir, today)
-    prev_csv = _find_previous_scan_csv(base_dir, today)
+    csv_path, xlsx_path = _dated_output_paths(history_dir, today)
+    score4plus_csv_path, score4plus_xlsx_path = _filtered_output_paths(history_dir, today)
+    prev_csv = _find_previous_scan_csv(history_dir, today)
 
     print(f"[{dt.datetime.now().isoformat(timespec='seconds')}] Starting VCP scan...")
     print(f"Output CSV: {csv_path}")
@@ -443,7 +444,7 @@ def run_vcp_job(
     )
 
     full_scan_frame = pd.read_csv(csv_path)
-    msg = _build_message(today, full_scan_frame, blacklisted_symbols, focus_symbols, base_dir)
+    msg = _build_message(today, full_scan_frame, blacklisted_symbols, focus_symbols, history_dir)
     _post_webhook(msg)
     print(f"[{dt.datetime.now().isoformat(timespec='seconds')}] Sent HTML stock list message.")
 
@@ -481,6 +482,7 @@ def parse_args(argv=None):
     parser.add_argument("--schedule-hour", type=int, default=6)
     parser.add_argument("--schedule-minute", type=int, default=0)
     parser.add_argument("--base-dir", default=".")
+    parser.add_argument("--history-dir", default="./history_data")
 
     # Scan settings (mirrors main.py)
     parser.add_argument("--max-tickers", type=int, default=8000)
@@ -504,6 +506,7 @@ def main(argv=None):
 
     job_kwargs = {
         "base_dir": Path(args.base_dir).resolve(),
+        "history_dir": Path(args.history_dir).resolve(),
         "max_tickers": args.max_tickers,
         "lookback_days": args.lookback_days,
         "workers": args.workers,
