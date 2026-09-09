@@ -57,6 +57,17 @@ class ScanRow:
     status: str  # vcp, no_pattern, fetch_error
     last_close: Optional[float]
     day_change_pct: Optional[float]
+    ema_5: Optional[float]
+    ema_10: Optional[float]
+    ema_20: Optional[float]
+    ema_60: Optional[float]
+    ema_250: Optional[float]
+    price_above_ema_20: Optional[bool]
+    price_above_ema_60: Optional[bool]
+    price_above_ema_250: Optional[bool]
+    ema_stack_bullish: Optional[bool]
+    ema_signal_note: str
+    trend_score: int
     daily_high: Optional[float]
     daily_low: Optional[float]
     daily_volume: Optional[float]
@@ -721,6 +732,63 @@ def fetch_history(
     return fetch_history_yahoo(symbol, lookback_days)
 
 
+def _compute_latest_ema(close_series: pd.Series, span: int) -> Optional[float]:
+    if close_series.empty:
+        return None
+    ema_series = close_series.ewm(span=span, adjust=False).mean().dropna()
+    if ema_series.empty:
+        return None
+    return float(ema_series.iloc[-1])
+
+
+def _build_ema_signal_note(
+    last_close: float,
+    ema_5: Optional[float],
+    ema_10: Optional[float],
+    ema_20: Optional[float],
+    ema_60: Optional[float],
+    ema_250: Optional[float],
+) -> str:
+    notes: list[str] = []
+    if None not in (ema_5, ema_10, ema_20) and last_close > ema_5 > ema_10 > ema_20:
+        notes.append("ultra-short strong")
+    if None not in (ema_20, ema_60) and last_close > ema_20 > ema_60:
+        notes.append("mid-trend healthy")
+    if None not in (ema_60, ema_250) and last_close > ema_60 > ema_250:
+        notes.append("long-trend bullish")
+    elif ema_250 is not None and last_close < ema_250:
+        notes.append("below long-term trend")
+    return "; ".join(notes)
+
+
+def _compute_trend_score(
+    last_close: float,
+    ema_5: Optional[float],
+    ema_10: Optional[float],
+    ema_20: Optional[float],
+    ema_60: Optional[float],
+    ema_250: Optional[float],
+) -> int:
+    score = 0
+    if ema_5 is not None and last_close > ema_5:
+        score += 1
+    if None not in (ema_5, ema_10) and ema_5 > ema_10:
+        score += 1
+    if None not in (ema_10, ema_20) and ema_10 > ema_20:
+        score += 1
+    if ema_20 is not None and last_close > ema_20:
+        score += 2
+    if None not in (ema_20, ema_60) and ema_20 > ema_60:
+        score += 2
+    if ema_60 is not None and last_close > ema_60:
+        score += 1
+    if None not in (ema_60, ema_250) and ema_60 > ema_250:
+        score += 1
+    if ema_250 is not None and last_close > ema_250:
+        score += 1
+    return score
+
+
 def analyze_symbol(
     symbol: str,
     lookback_days: int,
@@ -738,6 +806,17 @@ def analyze_symbol(
                 status="fetch_error",
                 last_close=None,
                 day_change_pct=None,
+                ema_5=None,
+                ema_10=None,
+                ema_20=None,
+                ema_60=None,
+                ema_250=None,
+                price_above_ema_20=None,
+                price_above_ema_60=None,
+                price_above_ema_250=None,
+                ema_stack_bullish=None,
+                ema_signal_note="",
+                trend_score=0,
                 daily_high=None,
                 daily_low=None,
                 daily_volume=None,
@@ -752,9 +831,24 @@ def analyze_symbol(
             return None, row
 
         vcp = detect_vcp(df)
+        close_series = pd.to_numeric(df["Close"], errors="coerce").dropna()
         last_close = float(df["Close"].iloc[-1])
         prev_close = float(df["Close"].iloc[-2]) if len(df) >= 2 else None
         day_change_pct = ((last_close / prev_close) - 1.0) * 100.0 if prev_close not in (None, 0) else None
+        ema_5 = _compute_latest_ema(close_series, 5)
+        ema_10 = _compute_latest_ema(close_series, 10)
+        ema_20 = _compute_latest_ema(close_series, 20)
+        ema_60 = _compute_latest_ema(close_series, 60)
+        ema_250 = _compute_latest_ema(close_series, 250)
+        price_above_ema_20 = (last_close > ema_20) if ema_20 is not None else None
+        price_above_ema_60 = (last_close > ema_60) if ema_60 is not None else None
+        price_above_ema_250 = (last_close > ema_250) if ema_250 is not None else None
+        ema_stack_bullish = (
+            ema_5 is not None and ema_10 is not None and ema_20 is not None and ema_60 is not None and ema_250 is not None
+            and ema_5 > ema_10 > ema_20 > ema_60 > ema_250
+        )
+        ema_signal_note = _build_ema_signal_note(last_close, ema_5, ema_10, ema_20, ema_60, ema_250)
+        trend_score = _compute_trend_score(last_close, ema_5, ema_10, ema_20, ema_60, ema_250)
         daily_high = float(df["High"].iloc[-1])
         daily_low = float(df["Low"].iloc[-1])
         daily_volume = float(df["Volume"].iloc[-1])
@@ -767,6 +861,17 @@ def analyze_symbol(
                 status="vcp",
                 last_close=last_close,
                 day_change_pct=day_change_pct,
+                ema_5=ema_5,
+                ema_10=ema_10,
+                ema_20=ema_20,
+                ema_60=ema_60,
+                ema_250=ema_250,
+                price_above_ema_20=price_above_ema_20,
+                price_above_ema_60=price_above_ema_60,
+                price_above_ema_250=price_above_ema_250,
+                ema_stack_bullish=ema_stack_bullish,
+                ema_signal_note=ema_signal_note,
+                trend_score=trend_score,
                 daily_high=daily_high,
                 daily_low=daily_low,
                 daily_volume=daily_volume,
@@ -786,6 +891,17 @@ def analyze_symbol(
             status="no_pattern",
             last_close=last_close,
             day_change_pct=day_change_pct,
+            ema_5=ema_5,
+            ema_10=ema_10,
+            ema_20=ema_20,
+            ema_60=ema_60,
+            ema_250=ema_250,
+            price_above_ema_20=price_above_ema_20,
+            price_above_ema_60=price_above_ema_60,
+            price_above_ema_250=price_above_ema_250,
+            ema_stack_bullish=ema_stack_bullish,
+            ema_signal_note=ema_signal_note,
+            trend_score=trend_score,
             daily_high=daily_high,
             daily_low=daily_low,
             daily_volume=daily_volume,
@@ -805,6 +921,17 @@ def analyze_symbol(
             status="fetch_error",
             last_close=None,
             day_change_pct=None,
+            ema_5=None,
+            ema_10=None,
+            ema_20=None,
+            ema_60=None,
+            ema_250=None,
+            price_above_ema_20=None,
+            price_above_ema_60=None,
+            price_above_ema_250=None,
+            ema_stack_bullish=None,
+            ema_signal_note="",
+            trend_score=0,
             daily_high=None,
             daily_low=None,
             daily_volume=None,
@@ -1078,6 +1205,17 @@ def save_outputs(
             "status": [r.status for r in rows],
             "last_close": [r.last_close for r in rows],
             "day_change_pct": [r.day_change_pct for r in rows],
+            "ema_5": [r.ema_5 for r in rows],
+            "ema_10": [r.ema_10 for r in rows],
+            "ema_20": [r.ema_20 for r in rows],
+            "ema_60": [r.ema_60 for r in rows],
+            "ema_250": [r.ema_250 for r in rows],
+            "price_above_ema_20": [r.price_above_ema_20 for r in rows],
+            "price_above_ema_60": [r.price_above_ema_60 for r in rows],
+            "price_above_ema_250": [r.price_above_ema_250 for r in rows],
+            "ema_stack_bullish": [r.ema_stack_bullish for r in rows],
+            "ema_signal_note": [r.ema_signal_note for r in rows],
+            "trend_score": [r.trend_score for r in rows],
             "daily_high": [r.daily_high for r in rows],
             "daily_low": [r.daily_low for r in rows],
             "daily_volume": [r.daily_volume for r in rows],

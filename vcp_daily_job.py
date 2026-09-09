@@ -138,6 +138,9 @@ def _save_score4plus_outputs(
     out_csv: Path,
     out_xlsx: Path,
     blacklisted_symbols: set[str],
+    require_price_above_ema20: bool,
+    require_price_above_ema60: bool,
+    require_price_above_ema250: bool,
 ) -> pd.DataFrame:
     if "score" not in frame.columns:
         filtered = frame.iloc[0:0].copy()
@@ -147,7 +150,20 @@ def _save_score4plus_outputs(
     if blacklisted_symbols and "symbol" in filtered.columns:
         filtered = filtered[~filtered["symbol"].astype(str).str.upper().isin(blacklisted_symbols)].copy()
 
-    filtered = filtered.sort_values(by=["score", "symbol"], ascending=[False, True]) if not filtered.empty else filtered
+    if require_price_above_ema20 and "price_above_ema_20" in filtered.columns:
+        filtered = filtered[filtered["price_above_ema_20"] == True].copy()
+    if require_price_above_ema60 and "price_above_ema_60" in filtered.columns:
+        filtered = filtered[filtered["price_above_ema_60"] == True].copy()
+    if require_price_above_ema250 and "price_above_ema_250" in filtered.columns:
+        filtered = filtered[filtered["price_above_ema_250"] == True].copy()
+
+    if not filtered.empty:
+        sort_cols = ["score", "symbol"]
+        ascending = [False, True]
+        if "trend_score" in filtered.columns:
+            sort_cols = ["score", "trend_score", "symbol"]
+            ascending = [False, False, True]
+        filtered = filtered.sort_values(by=sort_cols, ascending=ascending)
     filtered.to_csv(out_csv, index=False)
     filtered.to_excel(out_xlsx, index=False)
     print(f"Saved score>=4 filtered CSV to {out_csv}")
@@ -162,6 +178,7 @@ def _build_message(
     focus_symbols: set[str],
     history_dir: Path,
     fallback_metadata: Optional[dict[str, scanner.StockMetadata]] = None,
+    eligible_score_symbols: Optional[set[str]] = None,
 ) -> str:
     if full_scan_frame.empty or "symbol" not in full_scan_frame.columns:
         return (
@@ -182,6 +199,11 @@ def _build_message(
         frame["day_change_pct"] = None
     if "company_name" not in frame.columns:
         frame["company_name"] = ""
+    if "trend_score" not in frame.columns:
+        frame["trend_score"] = 0
+    for col in ["price_above_ema_20", "price_above_ema_60", "price_above_ema_250", "ema_stack_bullish"]:
+        if col not in frame.columns:
+            frame[col] = None
 
     # Non-focused symbols still honor blacklist; focused symbols always stay.
     if blacklisted_symbols:
@@ -214,6 +236,11 @@ def _build_message(
                 "score_delta": [0.0] * len(missing_focus),
                 "prev_score": [0.0] * len(missing_focus),
                 "days_ge_4": [0] * len(missing_focus),
+                "trend_score": [0] * len(missing_focus),
+                "price_above_ema_20": [None] * len(missing_focus),
+                "price_above_ema_60": [None] * len(missing_focus),
+                "price_above_ema_250": [None] * len(missing_focus),
+                "ema_stack_bullish": [None] * len(missing_focus),
             }
         )
         focus_frame = pd.concat([focus_frame, extra], ignore_index=True)
@@ -223,11 +250,27 @@ def _build_message(
     existing_frame = non_focus[(non_focus["score"] >= 4) & (non_focus["prev_score"] >= 4)].copy()
     dropped_frame = non_focus[(non_focus["score"] < 4) & (non_focus["prev_score"] >= 4)].copy()
 
-    def _rows_from(df: pd.DataFrame) -> list[tuple[str, str, float, int, float, Optional[float], int]]:
-        rows: list[tuple[str, str, float, int, float, Optional[float], int]] = []
+    if eligible_score_symbols is not None:
+        newly_frame = newly_frame[newly_frame["symbol"].isin(eligible_score_symbols)].copy()
+        existing_frame = existing_frame[existing_frame["symbol"].isin(eligible_score_symbols)].copy()
+
+    def _flag_text(value) -> str:
+        if value is True:
+            return "Y"
+        if value is False:
+            return "N"
+        return "-"
+
+    def _rows_from(df: pd.DataFrame) -> list[tuple[str, str, float, int, float, Optional[float], int, int, str, str, str, str]]:
+        rows: list[tuple[str, str, float, int, float, Optional[float], int, int, str, str, str, str]] = []
         if df.empty:
             return rows
-        df = df.sort_values(by=["score", "symbol"], ascending=[False, True])
+        sort_cols = ["score", "symbol"]
+        ascending = [False, True]
+        if "trend_score" in df.columns:
+            sort_cols = ["score", "trend_score", "symbol"]
+            ascending = [False, False, True]
+        df = df.sort_values(by=sort_cols, ascending=ascending)
         for _, row in df.iterrows():
             symbol = str(row.get("symbol", "")).upper().strip()
             if not symbol:
@@ -251,25 +294,49 @@ def _build_message(
             except Exception:
                 days = 0
             try:
+                trend_score = int(row.get("trend_score", 0))
+            except Exception:
+                trend_score = 0
+            try:
                 chg_raw = row.get("day_change_pct")
                 chg = float(chg_raw) if pd.notna(chg_raw) else None
             except Exception:
                 chg = None
-            rows.append((symbol, name, price, score, delta, chg, days))
+            rows.append(
+                (
+                    symbol,
+                    name,
+                    price,
+                    score,
+                    delta,
+                    chg,
+                    days,
+                    trend_score,
+                    _flag_text(row.get("price_above_ema_20")),
+                    _flag_text(row.get("price_above_ema_60")),
+                    _flag_text(row.get("price_above_ema_250")),
+                    _flag_text(row.get("ema_stack_bullish")),
+                )
+            )
         return rows
 
     def _render_section_blocks(
         title: str,
-        rows: list[tuple[str, str, float, int, float, Optional[float], int]],
+        rows: list[tuple[str, str, float, int, float, Optional[float], int, int, str, str, str, str]],
         show_days: bool,
+        show_ema: bool,
     ) -> list[str]:
         if not rows:
             return [f"<b>{html.escape(title)} (0)</b>\n<pre>(none)</pre>"]
 
         symbol_w = max(6, max(len(r[0]) for r in rows))
         name_w = 24
-        if show_days:
+        if show_days and show_ema:
+            header = f"{'symbol':<{symbol_w}} {'name':<{name_w}} {'price':>10} {'score':>5} {'trnd':>4} {'e20':>3} {'e60':>3} {'e250':>4} {'stk':>3} {'delta':>6} {'chg%':>8} {'days':>5}"
+        elif show_days:
             header = f"{'symbol':<{symbol_w}} {'name':<{name_w}} {'price':>10} {'score':>5} {'delta':>6} {'chg%':>8} {'days':>5}"
+        elif show_ema:
+            header = f"{'symbol':<{symbol_w}} {'name':<{name_w}} {'price':>10} {'score':>5} {'trnd':>4} {'e20':>3} {'e60':>3} {'e250':>4} {'stk':>3} {'delta':>6} {'chg%':>8}"
         else:
             header = f"{'symbol':<{symbol_w}} {'name':<{name_w}} {'price':>10} {'score':>5} {'delta':>6} {'chg%':>8}"
 
@@ -280,11 +347,15 @@ def _build_message(
         while start < total:
             chunk = rows[start : start + SECTION_ROWS_PER_BLOCK]
             lines = [header]
-            for symbol, name, price, score, delta, chg, days in chunk:
+            for symbol, name, price, score, delta, chg, days, trend_score, e20, e60, e250, stack in chunk:
                 name_short = (name[: name_w - 1] + "...") if len(name) > name_w else name
                 chg_text = f"{chg:+.2f}%" if chg is not None else "   n/a"
-                if show_days:
+                if show_days and show_ema:
+                    line = f"{symbol:<{symbol_w}} {name_short:<{name_w}} {price:>10.2f} {score:>5} {trend_score:>4} {e20:>3} {e60:>3} {e250:>4} {stack:>3} {delta:+6.1f} {chg_text:>8} {days:>5}"
+                elif show_days:
                     line = f"{symbol:<{symbol_w}} {name_short:<{name_w}} {price:>10.2f} {score:>5} {delta:+6.1f} {chg_text:>8} {days:>5}"
+                elif show_ema:
+                    line = f"{symbol:<{symbol_w}} {name_short:<{name_w}} {price:>10.2f} {score:>5} {trend_score:>4} {e20:>3} {e60:>3} {e250:>4} {stack:>3} {delta:+6.1f} {chg_text:>8}"
                 else:
                     line = f"{symbol:<{symbol_w}} {name_short:<{name_w}} {price:>10.2f} {score:>5} {delta:+6.1f} {chg_text:>8}"
                 lines.append(html.escape(line))
@@ -298,10 +369,10 @@ def _build_message(
         return blocks
 
     sections: list[str] = []
-    sections.extend(_render_section_blocks("Focused symbols (always shown)", _rows_from(focus_frame), show_days=False))
-    sections.extend(_render_section_blocks("Newly achieved score >= 4", _rows_from(newly_frame), show_days=False))
-    sections.extend(_render_section_blocks("Existing score >= 4", _rows_from(existing_frame), show_days=True))
-    sections.extend(_render_section_blocks("Dropped below 4 (was >= 4 previously)", _rows_from(dropped_frame), show_days=False))
+    sections.extend(_render_section_blocks("Focused symbols (always shown)", _rows_from(focus_frame), show_days=False, show_ema=False))
+    sections.extend(_render_section_blocks("Newly achieved score >= 4", _rows_from(newly_frame), show_days=False, show_ema=True))
+    sections.extend(_render_section_blocks("Existing score >= 4", _rows_from(existing_frame), show_days=True, show_ema=True))
+    sections.extend(_render_section_blocks("Dropped below 4 (was >= 4 previously)", _rows_from(dropped_frame), show_days=False, show_ema=False))
     focus_count = 0 if focus_frame.empty else int(focus_frame["symbol"].nunique())
     new_count = 0 if newly_frame.empty else int(newly_frame["symbol"].nunique())
     existing_count = 0 if existing_frame.empty else int(existing_frame["symbol"].nunique())
@@ -381,6 +452,9 @@ def run_vcp_job(
     metadata_scope: str,
     metadata_cache_path: Path,
     metadata_ttl_days: int,
+    require_price_above_ema20: bool,
+    require_price_above_ema60: bool,
+    require_price_above_ema250: bool,
 ) -> Path:
     today = dt.date.today()
     blacklist_path = base_dir / BLACKLIST_FILE_NAME
@@ -431,6 +505,9 @@ def run_vcp_job(
         score4plus_csv_path,
         score4plus_xlsx_path,
         blacklisted_symbols,
+        require_price_above_ema20,
+        require_price_above_ema60,
+        require_price_above_ema250,
     )
 
     if full_scan_frame.empty or "symbol" not in full_scan_frame.columns:
@@ -439,7 +516,8 @@ def run_vcp_job(
         available_symbols = set(full_scan_frame["symbol"].astype(str).str.upper())
         missing_focus = sorted(focus_symbols - available_symbols)
     fallback_metadata = scanner.get_stock_metadata_map(missing_focus, str(metadata_cache_path), metadata_ttl_days) if missing_focus else {}
-    msg = _build_message(today, full_scan_frame, blacklisted_symbols, focus_symbols, history_dir, fallback_metadata)
+    eligible_score_symbols = set(score4plus_frame["symbol"].astype(str).str.upper()) if not score4plus_frame.empty and "symbol" in score4plus_frame.columns else set()
+    msg = _build_message(today, full_scan_frame, blacklisted_symbols, focus_symbols, history_dir, fallback_metadata, eligible_score_symbols)
     _post_webhook(msg)
     print(f"[{dt.datetime.now().isoformat(timespec='seconds')}] Sent HTML stock list message.")
 
@@ -494,6 +572,21 @@ def parse_args(argv=None):
     parser.add_argument("--futu-port", type=int, default=11111)
     parser.add_argument("--futu-fallback-yahoo", action="store_true")
     parser.add_argument(
+        "--require-price-above-ema20",
+        action="store_true",
+        help="Keep score>=4 filtered exports only when price is above EMA20.",
+    )
+    parser.add_argument(
+        "--require-price-above-ema60",
+        action="store_true",
+        help="Keep score>=4 filtered exports only when price is above EMA60.",
+    )
+    parser.add_argument(
+        "--require-price-above-ema250",
+        action="store_true",
+        help="Keep score>=4 filtered exports only when price is above EMA250.",
+    )
+    parser.add_argument(
         "--metadata-scope",
         choices=["off", "filtered", "all"],
         default=scanner.DEFAULT_METADATA_SCOPE,
@@ -529,6 +622,9 @@ def main(argv=None):
         "futu_host": args.futu_host,
         "futu_port": args.futu_port,
         "futu_fallback_yahoo": args.futu_fallback_yahoo,
+        "require_price_above_ema20": args.require_price_above_ema20,
+        "require_price_above_ema60": args.require_price_above_ema60,
+        "require_price_above_ema250": args.require_price_above_ema250,
         "metadata_scope": args.metadata_scope,
         "metadata_cache_path": (Path(args.base_dir).resolve() / args.metadata_cache) if not Path(args.metadata_cache).is_absolute() else Path(args.metadata_cache),
         "metadata_ttl_days": args.metadata_ttl_days,

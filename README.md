@@ -55,6 +55,13 @@ Scan exports can now include these metadata columns when available:
 - `metadata_status`
 - `metadata_note`
 - `metadata_fetched_at`
+
+Scan exports also include EMA-based trend columns derived from the fetched daily close series:
+- `ema_5`, `ema_10`, `ema_20`, `ema_60`, `ema_250`
+- `price_above_ema_20`, `price_above_ema_60`, `price_above_ema_250`
+- `ema_stack_bullish`
+- `ema_signal_note`
+- `trend_score`
 ## Post-filter enrichment (fundamentals + targets)
 
 Provide a CSV with a `symbol`/`ticker` column to enrich only those names. Adds average volume, 60d return, RS vs SPY, distance to 52w high, market cap/sector/industry/country, beta, trailing/forward PE, short ratio, next earnings date, a composite buy score, breakout/target prices, and company metadata including name and business summary.
@@ -72,6 +79,8 @@ venv/bin/python main.py \
 - Looks for three shrinking pullbacks between local highs/lows with contracting volume and price near the latest pivot high.
 - Assigns a simple VCP score; outputs all symbols with status `vcp`, `no_pattern`, or `fetch_error`.
 - Optional `score_delta` shows change vs a provided prior scan file.
+- EMA signals are exported as additional trend context and do not change the VCP score.
+- `trend_score` is a separate EMA-alignment score used for ranking, not for redefining VCP.
 
 ## Notes
 
@@ -96,9 +105,16 @@ Scheduled run (every day at 6:00):
 venv/bin/python vcp_daily_job.py --mode schedule --schedule-hour 6 --schedule-minute 0 --base-dir .
 ```
 
+Useful daily-job filters:
+- `--require-price-above-ema20`: keep score>=4 filtered exports only when price is above EMA20.
+- `--require-price-above-ema60`: keep score>=4 filtered exports only when price is above EMA60.
+- `--require-price-above-ema250`: keep score>=4 filtered exports only when price is above EMA250.
+
 What it does each run:
 - Writes dated outputs: `YYYYMMDD_vcp_scan.csv` and `YYYYMMDD_vcp_scan.xlsx`.
 - Finds the most recent prior dated scan CSV and computes `score_delta` from it.
 - Filters symbols where `score == 4`.
+- Orders filtered score>=4 exports by VCP score first and `trend_score` second.
+- Shows compact EMA regime fields for score>=4 rows in the Telegram message.
 - Reuses cached metadata in exports and message rendering to reduce extra Yahoo requests.
 - Sends the result to `https://tgbot.www.vanportdev.com/msg/1348940059` with JSON body `{ "msg": "..." }`.
