@@ -8,7 +8,6 @@ from typing import Optional
 
 import pandas as pd
 import requests
-import yfinance as yf
 
 import main as scanner
 
@@ -112,14 +111,6 @@ def _consecutive_score4plus_days(history_dir: Path, today: dt.date) -> dict[str,
     return days_by_symbol
 
 
-def _lookup_symbol_name(symbol: str) -> str:
-    try:
-        info = yf.Ticker(symbol).get_info()
-    except Exception:
-        return ""
-    return str(info.get("shortName") or info.get("longName") or "").strip()
-
-
 def _load_symbol_file(path: Path, label: str) -> set[str]:
     if not path.exists():
         print(f"{label} file not found at {path}; continuing with empty list.")
@@ -142,40 +133,12 @@ def _load_focus_symbols(focus_path: Path) -> set[str]:
     return _load_symbol_file(focus_path, "Focus")
 
 
-def _fetch_price_change_pct(symbol: str) -> Optional[float]:
-    try:
-        hist = yf.download(
-            symbol,
-            period="7d",
-            interval="1d",
-            auto_adjust=True,
-            progress=False,
-            threads=False,
-        )
-        if hist is None or hist.empty:
-            return None
-        close = hist["Close"]
-        if isinstance(close, pd.DataFrame):
-            close = close.iloc[:, 0]
-        close = pd.to_numeric(close, errors="coerce").dropna()
-        if len(close) < 2:
-            return None
-        prev_close = float(close.iloc[-2])
-        last_close = float(close.iloc[-1])
-        if prev_close == 0:
-            return None
-        return (last_close / prev_close - 1.0) * 100.0
-    except Exception:
-        return None
-
-
 def _save_score4plus_outputs(
-    scan_csv: Path,
+    frame: pd.DataFrame,
     out_csv: Path,
     out_xlsx: Path,
     blacklisted_symbols: set[str],
 ) -> pd.DataFrame:
-    frame = pd.read_csv(scan_csv)
     if "score" not in frame.columns:
         filtered = frame.iloc[0:0].copy()
     else:
@@ -198,6 +161,7 @@ def _build_message(
     blacklisted_symbols: set[str],
     focus_symbols: set[str],
     history_dir: Path,
+    fallback_metadata: Optional[dict[str, scanner.StockMetadata]] = None,
 ) -> str:
     if full_scan_frame.empty or "symbol" not in full_scan_frame.columns:
         return (
@@ -214,6 +178,10 @@ def _build_message(
         frame["score_delta"] = 0
     if "last_close" not in frame.columns:
         frame["last_close"] = None
+    if "day_change_pct" not in frame.columns:
+        frame["day_change_pct"] = None
+    if "company_name" not in frame.columns:
+        frame["company_name"] = ""
 
     # Non-focused symbols still honor blacklist; focused symbols always stay.
     if blacklisted_symbols:
@@ -232,10 +200,16 @@ def _build_message(
     present_focus = set(focus_frame["symbol"].astype(str).str.upper()) if not focus_frame.empty else set()
     missing_focus = sorted(focus_symbols - present_focus)
     if missing_focus:
+        extra_names = []
+        for symbol in missing_focus:
+            metadata = (fallback_metadata or {}).get(symbol.upper())
+            extra_names.append(metadata.company_name if metadata is not None else "")
         extra = pd.DataFrame(
             {
                 "symbol": missing_focus,
+                "company_name": extra_names,
                 "last_close": [None] * len(missing_focus),
+                "day_change_pct": [None] * len(missing_focus),
                 "score": [0] * len(missing_focus),
                 "score_delta": [0.0] * len(missing_focus),
                 "prev_score": [0.0] * len(missing_focus),
@@ -258,7 +232,7 @@ def _build_message(
             symbol = str(row.get("symbol", "")).upper().strip()
             if not symbol:
                 continue
-            name = _lookup_symbol_name(symbol)
+            name = str(row.get("company_name") or "").strip()
             price_raw = row.get("last_close")
             try:
                 price = float(price_raw) if pd.notna(price_raw) else 0.0
@@ -276,7 +250,11 @@ def _build_message(
                 days = int(row.get("days_ge_4", 0))
             except Exception:
                 days = 0
-            chg = _fetch_price_change_pct(symbol)
+            try:
+                chg_raw = row.get("day_change_pct")
+                chg = float(chg_raw) if pd.notna(chg_raw) else None
+            except Exception:
+                chg = None
             rows.append((symbol, name, price, score, delta, chg, days))
         return rows
 
@@ -400,6 +378,9 @@ def run_vcp_job(
     futu_host: str,
     futu_port: int,
     futu_fallback_yahoo: bool,
+    metadata_scope: str,
+    metadata_cache_path: Path,
+    metadata_ttl_days: int,
 ) -> Path:
     today = dt.date.today()
     blacklist_path = base_dir / BLACKLIST_FILE_NAME
@@ -435,16 +416,30 @@ def run_vcp_job(
     )
 
     prev_scores = scanner._load_previous_scores(str(prev_csv)) if prev_csv else None
-    scanner.save_outputs(rows, str(csv_path), str(xlsx_path), prev_scores)
+    full_scan_frame = scanner.save_outputs(
+        rows,
+        str(csv_path),
+        str(xlsx_path),
+        prev_scores,
+        metadata_scope=metadata_scope,
+        metadata_cache_path=str(metadata_cache_path),
+        metadata_ttl_days=metadata_ttl_days,
+        always_include_symbols=sorted(focus_symbols),
+    )
     score4plus_frame = _save_score4plus_outputs(
-        csv_path,
+        full_scan_frame,
         score4plus_csv_path,
         score4plus_xlsx_path,
         blacklisted_symbols,
     )
 
-    full_scan_frame = pd.read_csv(csv_path)
-    msg = _build_message(today, full_scan_frame, blacklisted_symbols, focus_symbols, history_dir)
+    if full_scan_frame.empty or "symbol" not in full_scan_frame.columns:
+        missing_focus = sorted(focus_symbols)
+    else:
+        available_symbols = set(full_scan_frame["symbol"].astype(str).str.upper())
+        missing_focus = sorted(focus_symbols - available_symbols)
+    fallback_metadata = scanner.get_stock_metadata_map(missing_focus, str(metadata_cache_path), metadata_ttl_days) if missing_focus else {}
+    msg = _build_message(today, full_scan_frame, blacklisted_symbols, focus_symbols, history_dir, fallback_metadata)
     _post_webhook(msg)
     print(f"[{dt.datetime.now().isoformat(timespec='seconds')}] Sent HTML stock list message.")
 
@@ -498,6 +493,23 @@ def parse_args(argv=None):
     parser.add_argument("--futu-host", default="127.0.0.1")
     parser.add_argument("--futu-port", type=int, default=11111)
     parser.add_argument("--futu-fallback-yahoo", action="store_true")
+    parser.add_argument(
+        "--metadata-scope",
+        choices=["off", "filtered", "all"],
+        default=scanner.DEFAULT_METADATA_SCOPE,
+        help="Metadata enrichment scope for dated scan exports.",
+    )
+    parser.add_argument(
+        "--metadata-cache",
+        default=scanner.DEFAULT_METADATA_CACHE,
+        help="Local JSON cache file for company metadata.",
+    )
+    parser.add_argument(
+        "--metadata-ttl-days",
+        type=int,
+        default=scanner.DEFAULT_METADATA_TTL_DAYS,
+        help="Refresh successful cached metadata after this many days.",
+    )
     return parser.parse_args(argv)
 
 
@@ -517,6 +529,9 @@ def main(argv=None):
         "futu_host": args.futu_host,
         "futu_port": args.futu_port,
         "futu_fallback_yahoo": args.futu_fallback_yahoo,
+        "metadata_scope": args.metadata_scope,
+        "metadata_cache_path": (Path(args.base_dir).resolve() / args.metadata_cache) if not Path(args.metadata_cache).is_absolute() else Path(args.metadata_cache),
+        "metadata_ttl_days": args.metadata_ttl_days,
     }
 
     if args.mode == "once":

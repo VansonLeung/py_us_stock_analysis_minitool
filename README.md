@@ -42,11 +42,22 @@ Key flags (scan):
 - `--lookback-days`: daily bars requested. Default 260.
 - `--workers`: thread pool size. Default 8.
 - `--csv` / `--excel`: output paths (Excel needs `openpyxl`).
+- `--metadata-scope {off,filtered,all}`: attach cached company metadata to scan exports. `filtered` enriches score>=4 rows and daily focus symbols.
+- `--metadata-cache`: JSON cache file for company metadata. Default `stock_metadata_cache.json`.
+- `--metadata-ttl-days`: refresh successful cache entries after this many days. Default 30.
 - `--score-delta-from path/to/old_vcp_scan.csv`: adds `score_delta` vs a prior scan.
 
+Scan exports can now include these metadata columns when available:
+- `company_name`
+- `sector`
+- `industry`
+- `business_summary`
+- `metadata_status`
+- `metadata_note`
+- `metadata_fetched_at`
 ## Post-filter enrichment (fundamentals + targets)
 
-Provide a CSV with a `symbol`/`ticker` column to enrich only those names. Adds average volume, 60d return, RS vs SPY, distance to 52w high, market cap/sector/industry/country, beta, trailing/forward PE, short ratio, next earnings date, a composite buy score, and breakout/target prices.
+Provide a CSV with a `symbol`/`ticker` column to enrich only those names. Adds average volume, 60d return, RS vs SPY, distance to 52w high, market cap/sector/industry/country, beta, trailing/forward PE, short ratio, next earnings date, a composite buy score, breakout/target prices, and company metadata including name and business summary.
 
 ```bash
 venv/bin/python main.py \
@@ -65,6 +76,7 @@ venv/bin/python main.py \
 ## Notes
 
 - Yahoo Finance may throttle; reduce `--workers` or split runs if rate-limited.
+- Metadata is cached locally to avoid refetching company details on every run.
 - Futu requires a running OpenD instance; use `--futu-fallback-yahoo` to fall back per-symbol.
 - Outputs are heuristic, not trading advice—validate before use.
 
@@ -88,4 +100,5 @@ What it does each run:
 - Writes dated outputs: `YYYYMMDD_vcp_scan.csv` and `YYYYMMDD_vcp_scan.xlsx`.
 - Finds the most recent prior dated scan CSV and computes `score_delta` from it.
 - Filters symbols where `score == 4`.
+- Reuses cached metadata in exports and message rendering to reduce extra Yahoo requests.
 - Sends the result to `https://tgbot.www.vanportdev.com/msg/1348940059` with JSON body `{ "msg": "..." }`.
