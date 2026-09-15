@@ -16,7 +16,7 @@ from urllib3.util.retry import Retry
 import yfinance as yf
 from tqdm import tqdm
 
-yf.enable_debug_mode()
+# yf.enable_debug_mode()
 
 NASDAQ_URL = "https://ftp.nasdaqtrader.com/dynamic/SymDir/nasdaqtraded.txt"
 OTHER_URL = "https://ftp.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt"
