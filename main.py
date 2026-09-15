@@ -16,6 +16,7 @@ from urllib3.util.retry import Retry
 import yfinance as yf
 from tqdm import tqdm
 
+yf.enable_debug_mode()
 
 NASDAQ_URL = "https://ftp.nasdaqtrader.com/dynamic/SymDir/nasdaqtraded.txt"
 OTHER_URL = "https://ftp.nasdaqtrader.com/dynamic/SymDir/otherlisted.txt"
@@ -24,8 +25,9 @@ SEC_TICKER_TXT_URL = "https://www.sec.gov/include/ticker.txt"
 GITHUB_TICKERS_URL = "https://raw.githubusercontent.com/rreichel3/US-Stock-Symbols/master/all/all_tickers.txt"
 DEFAULT_METADATA_SCOPE = "filtered"
 DEFAULT_METADATA_CACHE = "stock_metadata_cache.json"
-DEFAULT_METADATA_TTL_DAYS = 30
-METADATA_ERROR_TTL_HOURS = 12
+DEFAULT_METADATA_TTL_DAYS = 300
+METADATA_ERROR_TTL_HOURS = 2400
+METADATA_MISSING_RETRY_ATTEMPTS = 1
 SCAN_METADATA_COLUMNS = [
     "company_name",
     "sector",
@@ -253,70 +255,89 @@ def _save_metadata_cache(cache_path: Path, cache: dict[str, dict]) -> None:
 
 
 def _fetch_stock_metadata(symbol: str) -> StockMetadata:
-    meta = _empty_stock_metadata(symbol)
-    ticker = yf.Ticker(symbol)
+    last_missing = _empty_stock_metadata(
+        symbol,
+        status="missing",
+        note=f"empty yfinance metadata after {METADATA_MISSING_RETRY_ATTEMPTS} attempts",
+    )
 
-    info = {}
-    info_exc = None
-    try:
-        info = ticker.get_info() or {}
-    except Exception as exc:
-        info_exc = exc
+    for attempt in range(1, METADATA_MISSING_RETRY_ATTEMPTS + 1):
+        ticker = yf.Ticker(symbol)
 
-    fast_info = {}
-    try:
-        fast_info = ticker.fast_info  # type: ignore[attr-defined]
-    except Exception:
+        info = {}
+        info_exc = None
+        try:
+            info = ticker.get_info() or {}
+        except Exception as exc:
+            info_exc = exc
+
         fast_info = {}
+        try:
+            fast_info = ticker.fast_info  # type: ignore[attr-defined]
+        except Exception:
+            fast_info = {}
 
-    def _fi(key: str):
-        return fast_info.get(key) if hasattr(fast_info, "get") else getattr(fast_info, key, None)
+        def _fi(key: str):
+            return fast_info.get(key) if hasattr(fast_info, "get") else getattr(fast_info, key, None)
 
-    company_name = _normalize_metadata_text(
-        info.get("shortName") or info.get("longName") or info.get("displayName") or info.get("name")
-    )
-    sector = _normalize_metadata_text(info.get("sector")) or None
-    industry = _normalize_metadata_text(info.get("industry")) or None
-    business_summary = _normalize_metadata_text(info.get("longBusinessSummary"))
-    country = _normalize_metadata_text(info.get("country")) or None
-    trailing_pe = _safe_float(info.get("trailingPE"))
-    forward_pe = _safe_float(info.get("forwardPE"))
-    short_ratio = _safe_float(info.get("shortRatio") or info.get("shortPercentOfFloat"))
-    market_cap = _safe_float(_fi("market_cap"))
-    beta = _safe_float(_fi("beta"))
+        company_name = _normalize_metadata_text(
+            info.get("shortName") or info.get("longName") or info.get("displayName") or info.get("name")
+        )
+        sector = _normalize_metadata_text(info.get("sector")) or None
+        industry = _normalize_metadata_text(info.get("industry")) or None
+        business_summary = "" #_normalize_metadata_text(info.get("longBusinessSummary"))
+        country = _normalize_metadata_text(info.get("country")) or None
+        trailing_pe = _safe_float(info.get("trailingPE"))
+        forward_pe = _safe_float(info.get("forwardPE"))
+        short_ratio = _safe_float(info.get("shortRatio") or info.get("shortPercentOfFloat"))
+        market_cap = _safe_float(_fi("market_cap"))
+        beta = _safe_float(_fi("beta"))
 
-    next_earnings_date = None
-    earnings_ts = info.get("earningsTimestamp")
-    try:
-        if earnings_ts:
-            next_earnings_date = dt.datetime.fromtimestamp(int(earnings_ts), tz=dt.timezone.utc).strftime("%Y-%m-%d")
-    except Exception:
         next_earnings_date = None
+        earnings_ts = info.get("earningsTimestamp")
+        try:
+            if earnings_ts:
+                next_earnings_date = dt.datetime.fromtimestamp(int(earnings_ts), tz=dt.timezone.utc).strftime("%Y-%m-%d")
+        except Exception:
+            next_earnings_date = None
 
-    status = "ok" if any([company_name, sector, industry, business_summary, market_cap, beta]) else "missing"
-    note = ""
-    if info_exc is not None:
-        note = str(info_exc)
-        if status != "ok":
-            status = "error"
+        status = "ok" if any([company_name, sector, industry, business_summary, market_cap, beta]) else "missing"
+        note = ""
+        if info_exc is not None:
+            note = str(info_exc)
+            if status != "ok":
+                status = "error"
+        elif status == "missing":
+            note = (
+                f"empty yfinance metadata after {METADATA_MISSING_RETRY_ATTEMPTS} attempts"
+                if attempt == METADATA_MISSING_RETRY_ATTEMPTS
+                else f"empty yfinance metadata response ({attempt}/{METADATA_MISSING_RETRY_ATTEMPTS})"
+            )
 
-    return StockMetadata(
-        symbol=symbol.upper(),
-        company_name=company_name,
-        sector=sector,
-        industry=industry,
-        business_summary=business_summary,
-        country=country,
-        market_cap=market_cap,
-        beta=beta,
-        trailing_pe=trailing_pe,
-        forward_pe=forward_pe,
-        short_ratio=short_ratio,
-        next_earnings_date=next_earnings_date,
-        metadata_status=status,
-        metadata_note=note,
-        metadata_fetched_at=_metadata_timestamp_now(),
-    )
+        metadata = StockMetadata(
+            symbol=symbol.upper(),
+            company_name=company_name,
+            sector=sector,
+            industry=industry,
+            business_summary=business_summary,
+            country=country,
+            market_cap=market_cap,
+            beta=beta,
+            trailing_pe=trailing_pe,
+            forward_pe=forward_pe,
+            short_ratio=short_ratio,
+            next_earnings_date=next_earnings_date,
+            metadata_status=status,
+            metadata_note=note,
+            metadata_fetched_at=_metadata_timestamp_now(),
+        )
+        if metadata.metadata_status == "missing":
+            last_missing = metadata
+            if attempt < METADATA_MISSING_RETRY_ATTEMPTS:
+                continue
+        return metadata
+
+    return last_missing
 
 
 def get_stock_metadata_map(symbols: Sequence[str], cache_path: Optional[str], ttl_days: int) -> dict[str, StockMetadata]:

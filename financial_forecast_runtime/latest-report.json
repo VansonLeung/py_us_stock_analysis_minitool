@@ -1,0 +1,578 @@
+{
+  "schemaVersion": 1,
+  "startedAt": "2026-09-15T12:45:11.524Z",
+  "completedAt": "2026-09-15T12:46:14.862Z",
+  "status": "success",
+  "options": {
+    "engine": "google",
+    "query": "",
+    "sector": "整體產業板塊",
+    "market": "全球市場",
+    "horizon": "2026-2028",
+    "format": "json",
+    "headless": false,
+    "maxResults": 5,
+    "aiWait": 45000,
+    "delay": 1500,
+    "timeout": 360000
+  },
+  "searches": [
+    {
+      "engine": "google",
+      "category": "政策與補貼（潛在優勢）",
+      "query": "請簡單說明： 整體產業板塊 全球市場 2026-2028 (產業政策 OR 補貼 OR 扶持 OR 發展規劃 OR 法案 OR subsidies OR \"sector winners\")",
+      "status": "success",
+      "results": [
+        {
+          "title": "即時新聞｜摩根大通認股證牛熊證",
+          "url": "https://www.google.com/goto?url=CAESiAEB6zswFb2LUwTWJP7_bQuslc5N4_ZRoNZaorEALqfOoOODQlb3yWbOpqkUmOz8YfbEDyoBPwRE0IMmMRpYCyBLT2EcO64ST586frHaWdfwbrVBPno-UvDJaifZvonvfJfl6vmlU2HH2lZlsNSUVJ3KaW4E5Ny-_G9z8hCChGjy3IHWw9TwKKen"
+        },
+        {
+          "title": "气派科技：2026年度以简易程序向特定对象发行股票募集 ...",
+          "url": "https://www.google.com/goto?url=CAESmAEB6zswFZu80-wqhnWeXHfWmY2upR_TDrZewSwOAEYMEkyo__ZJMVJ-n9GHDRUVxHN8CIEulU6m1N39bdm6bom0EDeyuFUhXUA94qQ-HgOz6Uau0m81imxHUjAvfWNzBpucHC_oBCxls_RU8MgFAdqT7DPNdQqzipbNHbV7TbuMMyaKMkx5txeFzBZOry7B4qpNgCxnXXDJXA"
+        },
+        {
+          "title": "2026091001024_c.pdf",
+          "url": "https://www.google.com/goto?url=CAEShwEB6zswFSmTyfE1tTClXVj2HC2NUCoIJIvGaI2qYGKktFNZGgWPFOE57FRzbehoNr3doIRrr9XNKNCOhFuz6Qh1x4twsM-c_adWOnY44qrganhgtJb45ajNU86pNJoaS6nA88wAoyhoaKukE8rlK0nb-leKrTHvOtM0VQPnu7JRVcXQFLtg0rQ"
+        },
+        {
+          "title": "2026 年度向特定对象发行A 股股票募集说明书(注册稿)",
+          "url": "https://www.google.com/goto?url=CAESswEB6zswFaimBIee0GHEppzwIdYwboVKCsKueLcMm0oADN4wF6V1m1S9rpJgJhVDR8Go422IoSuzCQlT1BZ3rnaE4Km4wiCUhpDkXUbzWQxZW1DeTAOQT3RoWvz4EI0kv9cbxO_xTkgSPUp0z12FmvmlSyplEBPvnNHpYDTjkq_3F04xmJ2RXoH4dcBRSZCu6nGPNhD7GLpuZ0DMrbUA0v5n5B4EbOgSWcYYW0pr1Vk86eEPWg"
+        },
+        {
+          "title": "2026年7月中国新能源汽车行业政策观研「行业观研-试读」",
+          "url": "https://www.google.com/goto?url=CAESZAHrOzAVhI3VA2_DjML7ev5eSBS3xEgFqfYoGq9mLo-hSsGcltLBWF9pyhHCT2oW8XMVpWTDP1EPISySSLsOZKHbThBKC0GXfEHr95gXmg-UaRve7A00LdMSYZJoJRAqtjPWY-c"
+        }
+      ],
+      "aiOverview": {
+        "text": "在 2026-2028 年 的全球市場中，各國政府的產業政策與補貼總額已衝上歷史新高（如 2024 年底即突破 1,080 億美元），且政策導向從「短期經濟刺激」徹底轉向「國家安全與供應鏈自主」的戰略競爭。\n以下為此週期的主要產業政策、補貼重點與潛在贏家板塊（Sector Winners）的簡要說明：\n1. 先進半導體與 AI 基礎設施\n政策法案與補貼： 隨著美國《晶片法案》（CHIPS Act）、歐盟《晶片法案》進入資金落地與擴廠驗收的高峰期，各國對先進製程與半導體設備的租稅減免與資金補貼持續加碼。此外，面對大語言模型（LLM）的算力與電力瓶頸，各國政策開始傾斜支援 AI 數據中心的基礎設施建設。\n產業贏家（Sector Winners）： 先進製程晶圓代工、半導體先進封裝與設備、高運算 AI 晶片，以及為數據中心供電的能源與電網基礎設施（如重電設備）。\n2. 綠能與新能源裝備（以舊換新與自主供應鏈）\n政策法案與補貼： 雖然美、歐、中三大經濟體對再生能源補貼的方式各異（中國偏向低於市場利率的國有貸款，美日韓則以稅收抵免與財政貼息為主），但全球對太陽能（PV）、風電與儲能的防禦性補貼依然居高不下。2026 年後更密集結合「消費品以舊換新」與「智能家居/適老化綠色補貼」來提振終端內需。\n產業贏家（Sector Winners）： 儲能系統（ESS）、智慧電網軟硬體、智能綠色家居/服務機器人，以及具備地方保護或在地化生產優勢的再生能源供應商。\n3. 生物科技與先進醫療裝備\n政策法案與補貼： 面臨全球人口老齡化加速，多國陸續出台醫保立項指引與產業扶持專項（例如將高端醫療機器人納入醫保、支持生物醫藥研發補助等），各國也正建立更具韌性的本土關鍵藥物與醫材供應鏈。\n產業贏家（Sector Winners）： 手術機器人（尤其是增長最快的自然腔道與遠距手術細分市場）、生物科技/精準醫療，以及適老化健康監測與照護設備。\n4. 戰略性傳統重工業轉型\n政策法案與補貼： 根據 OECD 追蹤，大量政府補助流向具有地緣政治戰略價值的傳統高就業板塊，以反制海外產能過剩並推動低碳轉型。\n產業贏家（Sector Winners）： 高階造船業（高附加價值 LNG 船、綠色動力船）、低碳高強度鋼鐵/鋁業、航天與國防工業。\n💡 2026-2028 全球補貼三大核心趨勢：\n補貼驅動市佔，而非利潤： 補貼預期將貢獻全球戰略板塊超過 22% 的市佔率增幅，但容易造成特定領域產能過剩，企業獲利（Profitability）不一定隨產值成正比。\n法規合規與韌性優先： 企業僅憑技術效率已不足以致勝，能否取得補貼、順應各國本土化比例（Local Content Rules）並在關稅壁壘中靈活佈局，才是決定贏家的關鍵。\n政策債券點火民間資本： 包含兩岸與香港在內，政府正加速透過「專項引導基金」或「五年規劃硬指標」來發行專項債券，以政府資金點火、倒逼民間資本進場支持戰略新興產業。\n如果您希望深入評估特定板塊，可以告訴我：\n您最關心哪一個特定產業（如：電動車、半導體、AI 算力、儲能）？\n您的關注焦點是在哪一個目標市場（如：美洲、歐洲、中國/亞太地區）？\n您需要政策補貼明細還是指標龍頭企業的佈局比較？\n我可以為您提供更精準的數據與趨勢分析。",
+        "sources": [
+          {
+            "title": "OECD (+2) - Industrial subsidies hit USD 108 billion and reshape global competition。相關結果",
+            "url": "https://www.google.com/goto?url=CAESqgEB6zswFWd_XlSb8WKc6d9xU6SUJL636HSFQ7fTfI0dRQdBJT-4EM0GJcZ5NzT_YZXvtwkLTaeGcIwhd-nttKeKw9cC53Wf6RxpjXvwTH8aft04wt8GsERYGRr5XHOv4DmsCnVNRwwqt61jkg4FlytTqSCt97w6gFsbSsZQe0DTg5hVsU9QkUXRAMf4aVJ9X3GNSUC5i58lzllRZ7qP9DNd7heBMtTo8gDukQ"
+          },
+          {
+            "title": "aabdcegypt (+1) - Industrial Policy, Subsidies, and Local Content: How Governments ...。相關結果",
+            "url": "https://www.google.com/goto?url=CAESgQEB6zswFYO75uo_k1fUtceYwttlrUtAJOd3VgZFO6H3Fm-7snQDivkzebbS67oS3g-L7VkrBUXVM8Y17IsZ-uugwjwQWTVMt6BK_qTpBE2lu6DaGnEjuDOkxrUhSHAugfeiPl2RwO5244GkrE49AAaqcHVLwhvA-EpHg-0rPBCgq1o"
+          },
+          {
+            "title": "财联社 (+2) - 台积电法说会实录：今年资本支出加码至640亿美元高端芯片 ...。相關結果",
+            "url": "https://www.google.com/goto?url=CAESWQHrOzAVsLMRE23FVii2neevUWLKuC50Hniec0hbNobEbp5F8IMi7Y6gur8hsUf_rpX4m2q0l_jIU6GIf0hLkD-pwm0C53ZSgLRGVBU8JKcrGQTmDHkmwyrN"
+          },
+          {
+            "title": "LinkedIn (+4) - Industrial subsidies hit highest level since the global financial ...。相關結果",
+            "url": "https://www.google.com/goto?url=CAESiQEB6zswFWVQ9xj4I91gHLm0UdlPxYximQNXRWd0jBLRb-Sk7IW-aA0hgJvoGPJ5auFXbGmLuSc5tPE5l_LTXQt2UCv-vAduWZrnN1XHegRqZ-bui_V6zxNAn7CUnztOdNKDVrGtrvyAKDdOKeQXaEATS-VaABc8z6M4I_waQHwDuhT7lbS46xWjIg"
+          },
+          {
+            "title": "etnet 經濟通 (+1) - 【提振消費】商務部等發文促進智能家居消費，支持地方合理 ...。相關結果",
+            "url": "https://www.google.com/goto?url=CAEShAEB6zswFWWTIZfeoNlPIQncP_wOK0-0QxJ6jAs5ncvV5jIpdWzGJQ1uR_GUvwFw_lHPwWG0-e-E2v7iJIaXYmwFOj5MH9M7HyHSkbBcEFTXH8FZ29EEm_DShtD5WaoKdHjrp5JSVUcVIXzWcgQxwnsSqhFnchpY4ZtxFVmmogQvSQPX1Tc"
+          },
+          {
+            "title": "上海东方财富证券投资咨询有限公司 - 强于大市手术机器人行业深度报告。相關結果",
+            "url": "https://www.google.com/goto?url=CAESgQEB6zswFbnoaG6ik2AvRGdt72ytO3_4ktkTKRTRNn6I9j_IPisOSUi7QVwe5X4oYfHeuTscOZaxh_JubvUP7RYE2w3DoV4gSjI4kGSttfNpfgGDuP1EsEc7h53FOD0Uauelea647ttYD5BL3quhtLnnOedcWIVLUUPnO60e7jdsCh4"
+          },
+          {
+            "title": "香港01 (+2) - 施政報告前瞻｜創科研發開支不如深圳南山設硬指標可彎道超車？。相關結果",
+            "url": "https://www.google.com/goto?url=CAES8QIB6zswFePGCQBPPN0vyCXa4RltF56mNrhmc6qwINJ6ZaBzIxRG5NVi7H3Flb3EcyzEjATfropxcnGm8xw4mW_yh6_5zCuASkLUwNNNom35xmEV025IYk5sagxYh4_GwNjwk02h4Xuu-eQw8KsQ6zTd0pm5fiwUfOo6jLut4ZovLx5fnMw1QwZdwP78flH-gP-nPUwKY2UGhynZONITdGW_N3cOjS70JX6B6PL-nGBCEbbuYyDXtx-5WNkTilDg5ftHt4rgNHfNOms_Sfdk0NUGH5BOjy-7RDfsL6kJ2MHGQwAvFOjeIwUUylhWtKq8Urc_hOVv8gq5T6QTM9LlB06_eOopqF6UK7DNvO1mYgUzlPWLuq_bLq8P7HDet6rWkIn0aI4NqeGGg-mm0CE2NzRpC8lGJBGXbmD_DcMUkTjj5lIp221u7z1nRmYVeewIN6tE3kzmfq8-JMU4lASyQvk2pGjGyp8uosowMIQ0GivaZJM"
+          },
+          {
+            "title": "OECD (+3) - Key trends in industrial subsidies: OECD MAGIC Database of ...。相關結果",
+            "url": "https://www.google.com/goto?url=CAESsQEB6zswFRsjnl2ojxIXJyUvtNbarTh15BTZH5x6GXyxtx0Ej0pNWvTXY7dHC2zNbAq_930IBcsCo26-0oca1v4PT6AmKVzGjK_cunb1TjNj0f1E6zHfx0vibOsbfdfd5yFijwm8HyL9SnUXqm-EBrvDAPjKy_zSF7pfX6dQuN6vWeshQ0fGWKB88UorYQmzjVWJFMaFheLQvHfN5vA3gMz_Zj9kl6sJx3yvzcdSwV-IWQQ"
+          },
+          {
+            "title": "kpmg.com (+2) - 展望2026產業發展趨勢 - KPMG International。相關結果",
+            "url": "https://www.google.com/goto?url=CAESdgHrOzAVuaj736HUcyPYrtHH9vAXqqzFAfJEqwAEdC_DoCGrElT1Vno-QPA_cywBmba9ourMF2qxAK6a3KzmKfDhL0asf9rsx3ChTkO-UmLE23-sCecPtz84xfJZMdV_hcCBs88A3LpC7dNI7w5lbce_ldLZBlc"
+          },
+          {
+            "title": "大公文匯網 (+3) - 議論風生｜香港首個五年規劃：重塑政府與市場關係。相關結果",
+            "url": "https://www.google.com/goto?url=CAESdwHrOzAV9slBaa77CsFNyWs-TTobbFJaLksqxMwafGFjOvt6pOsBfzhLz9E2RVqCPsw79EkybXT3jovH37haqrUuKQYZS_UsTWCriBcubXd9RdiK7gf6WW_fN6fTtXhTvlKJvs7OMWWZMj6JAOht6j_cix5pS0D_"
+          },
+          {
+            "title": "2026年7月中国新能源汽车行业政策观研「行业观研-试读」. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESZAHrOzAVELmEaRcsvdY6AMOmiLLzWRY9IGJyxMHOTSjHmqzgORRf3JSaJkEVMUnsAd7eGB6_TlxO97UDQRG5L_Q7FELRsWNrcxbRx8ppFpRdY4yxXN25YJQkpEuI_GNJaZWsIFw"
+          },
+          {
+            "title": "OECD MAGIC Database of Industrial Subsidies. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESmQEB6zswFeBUBlZHobIlbA_ERQp6J7wzi-quzYXuItcOcsIE3mBjKZ6j_gBnwCNpIQKA-coqb8yyKFwuYsQAW86758OJdi12Afngw2L0QzxIVkqyq-L_Jnatqoj3BxT46_u7cMV8OjST-J_NwnZGHQLJVTUXvAW6cSw55taeu7lVl-Tb2NoXFXOAxbU5QXI2kbCxvs32e2cdr8E"
+          },
+          {
+            "title": "Industrial policy spending across 20 countries: What governments actually fund. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESsAEB6zswFQnNvKu0-K-p4Nq2H-2JsfSbtlZvwFxHFSQLq3Fb7qhZ-tvVa4KwwE6MWjSelhbZrPvH6IoDIt0REWHaTlopM7SWmuw6O5NCn5j3hCUQgHuZzEtPlu5Dh_0SNhFfr38rwPdViARxoFF1Nbb8xr4cS1SC30EL3TNYfqxQ-d01u6uvMoNlkD87LOOCxp7mdqOQXawnD-nPevbI5yzx4isM-uAdibOIf1Y5REoLDA"
+          },
+          {
+            "title": "施政報告2026懶人包｜生育津貼/租置計劃/知識產權/北都發展 .... 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESgQMB6zswFQ40EZW4l7GN92xBLtBDmIgE5apC9h6vzIinI3wgjVuiuPzL58NVWruFuYZIibHvc8-3SnjNjDfdDVLWNTfwbRLCUpnMA7vV1xZaKabH_zAEhUqhmdjk_9y7etbFWejQiy3BXRwSCC028Fl11qm-6X-pgRq1IBoiE8L3xm_rIpGmgnZJFPe-Jy9Wyo3oTqxJ35dLcOySX9FsAwGr5XSEBQSiHIhX_QkN-VwVcjZTXpsdY0pRgrzJiKPcWB-pMY3FKOC7ZPcAssBy41zbxh16zG0XXn7fvb0h2TI37VCbgHL_ALMc2wCzHufZQHKA77OTYLyu8wOAfEEAHl7-sUKo_ptbY9rUSaodwJpV8iNVQ-XNivBszgm6V9w0T6oNR1fUuQd1xKDzTArdnJyazIRJIvxnjIG6yDy35FvjCh0Mh2z5PsSiuy123ksjqLztA2H2Ar9LsuxYeOAhcmNaeHxiOzwe6M_UyL1tXLNJmAgHz4BzFb-M8IQYXkW2uV_P"
+          },
+          {
+            "title": "施政報告2026懶人包｜香港五年規劃 - 港聞. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESmQMB6zswFTyTtrEAQrvF9Sn0zcosPdvx9ERaSe-qizCrPOwX33qDZBhdAsvxVfEsYEnlwvBiaIzbiMMNC08zdwDnN45buAAgm9oZ9rzlo3YXQ50rQTEBHYMgRou6-BlTd_j2iKt7O0vvpWuFEeBzk7qhSSK0qs0U0M4908ReCaeYzm55OS5GiTaeDVbZP69dZQo5cUOWj2szIsZWWHr-vVtYEb7A_d5279pm8TsxcFw_xh7o_6wON4TepWc-Ctpn5yA3drSS5uvy3xQ5FzoH4haPGYSU3ohpjqZ1yYfVmkFbb2uWlS4VaacsnU1NT8TsPmYgbtmoHNy55ntyAdtgdbzsmkF74IuubXX16jFjR2bYXWq_TwpQRpk-lAiLmnbUxfRfrHM6ZqXnlTDC-ngYhhd4IWwvJN28vuTNWnoc35h5Ui0DItGTFIz5VwVa9nbLmbpHU58xHWquQzmi3mnm4SOh6Sev9Anlc3Qd512S4xuEwh2nNsFFEql1CBl3nfSU6mBlJw_xo9r5mZb0wjp_emV6z666jB4NpTfa"
+          },
+          {
+            "title": "As governments become economic actors, what are the challenge .... 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESpAEB6zswFXvZmrmGePivynTxuBLpTqWW97P-gIoHxDL7aJk_tDZkUGsOiFAH16eHiG3jFDwGPvUM_EdVRgxpuj-NfXIiEBHzhccO2UNvIpnes93AbjTC-AQLfIdfAe0OJz_juFdGUrbsp5NExu-RY6_6Ll2ol4jBQeGQ7NFT2g0-9rTc38mwXv7DsCu9Kf4Mo8Mn44wyz-5sEtdXtpFw3mV1PvfZyg"
+          },
+          {
+            "title": "工總發表2026白皮書國發會回應：持續協助本土產業升級轉型. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESYwHrOzAVJGr34NID_fl7RyZgvIucyn8QKM-BXrS0oEzLv0rsqel3sV5tL_NZ8gAZiB2H5DUsGv1eCfPkQMEFc5anWu_113rj_RlN6MuXSytOBx7bsgMR6bVHNcktf0axG-YO3w"
+          },
+          {
+            "title": "Asian Stocks Trade Mixed as Middle East Tensions Pressure Markets. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESbwHrOzAVw6tHFlCvMiF8cT5X7rq6yivsk27U119eto2dSsOhjQ3LBiEOGonoPEnHHmybPQiaWuuHZxwt-JQ_EmP-o5Y8v8ub0MQM4UXnQ8V9f2SNFTPQ381ytZ0X3xUvOewbrTvOTD_rWaJoXSj8nw"
+          },
+          {
+            "title": "Amodei wants slower AI, and no chips for China. The Anthropic chief .... 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESxQEB6zswFbeihA4g_TmKcwhjZVbGn7Ms-AZPAsaDt0Gk7fLJj12Kyn0_pc0psccGby0s4Xy4SmwITE4UTZld6NSAzF_ds8T6w7D-_IdalGo-5h15c8HRe-b_6YTibGXByv49GM1wWDd-i-K7k4xT9ChEv-6YkX_U8WDy7oOxegI8Syw_ALp8isDUBL-GBmNc6tDQmJDjHLWUPHoUtzJOx82pwYiyTo0Q7b0CSjIlFBTtJivjdi9EQZ9NAZ6I6T8U9764Ln8iUQ"
+          }
+        ],
+        "extractionStatus": "settled"
+      },
+      "aiOverviewStatus": "available",
+      "error": null
+    },
+    {
+      "engine": "google",
+      "category": "資金流向（機構取態）",
+      "query": "請簡單說明： 整體產業板塊 全球市場 2026-2028 (資金流向 OR 融資 OR \"fund flows\" OR \"13F filing\" OR \"new positions\" OR \"capital expenditure\")",
+      "status": "success",
+      "results": [
+        {
+          "title": "★補丁科2026 年下半年與明、後（2028）年動力2027",
+          "url": "https://www.google.com/goto?url=CAESjAQB6zswFUNv1TJEF9-WdPwiJmARYLwIARfUMt1azMDWRBUPkkveQch86VXlqX6pF3Q7DEmHvTr8haxwkODg7MKhdS1v3pVNs9yJ6G9C_sS-0JgAY77eS53BIx1hrEqNoLHHr-vMsrldrSIy8JPf_uZwwDK9kXM5jLE0MlYpKl0P8sCfZNr3gS5X45fgmgdjlIJpxfhX-gSZmLji-8ft3dCqzePpuB_i1a-90pkLtD4VnksRIfDN8zQIdHTAgP3zhH2CuOaJwacTuq4DFfrbAbQONV-nLodNGtcHJWCJlYOl9DA2jbwZcKILtTt0mpYO8zz5Uo7HMYcagHxcxneng-n4lqTG5EaVIih3CGyzAnl0vqQ1IxRKBH0k1tca6d7BiVIigrbjWZyPxXvlRHQo7tJufcpnCOU7FtB_yLGWHgS_Bu-G9jbqTFbmN214h6g3sLFXgTI1prMnZs7H37icZLwPeP8IsrCzlufUVFFUB37kCHovRhffSETJNHASYNUGCO0bwIG2O7Nl1qnV_sF4agREm6nDQ64FgKwjuKdBbzG_4KwccxFSZ9S1lEIEm2Rfs_EZj6TC8SRxqoS4Z3l3anmHBRj2gzTmUtJjHObjzAJ1xiGbGIZ-79ybD8lTBEU46q1Ar7Qi0c-NqttO2NeEI5pujXAocXWqk8AiDtT70hnkT2wwOeMIKfG32tOyKw"
+        },
+        {
+          "title": "即時新聞｜摩根大通認股證牛熊證",
+          "url": "https://www.google.com/goto?url=CAESiAEB6zswFQTZIbV8RKOjVgxG4Cm5_UChy-EB6qoC4S1Vpb_ahAkMVGG2-UipNGlOEo8V29L_WiAKInzJiDnKud7gWv1HWv1MJjGAeHL4hY4eqpj0LTAt9Tmq9lnob631pFTKScIsgaIBugccVyvaGTh5RwHhATkpHsbLOog-IbMfiXqEKcu_7v-Q"
+        },
+        {
+          "title": "80億回購，能否帶「易中天」重飛",
+          "url": "https://www.google.com/goto?url=CAESZgHrOzAVCBAPv98ZxKGruiiS3gyQ18YD7AAPuZKi_fqYfLtxrW-wmtjZfnANvWFmTu48WuxvVm42IxiZGeoMaZjvs6dbNfl-JmdcFi02xeVvCM1k92s8jUgjKpG_GADNNfwLdH_3vA"
+        },
+        {
+          "title": "2026年中期業績公告",
+          "url": "https://www.google.com/goto?url=CAESagHrOzAVbvBBx1iejyeziYgyGNHA1BjrorOt3Wn-GzDMA-9_gnYuYxZII8k2SdSPYwQJgUudQtA8A5oAxnkv0f7_2vZPJzVgZK_hYh4Raz78tj5kBImTj09tZUOaDRCeVINU5FopyoRdHh4"
+        },
+        {
+          "title": "公司公告_物产中大：2026年半年度报告 ...",
+          "url": "https://www.google.com/goto?url=CAESlwEB6zswFbbfFISoiBkaw6vjkNSKUfUKUrMig2-A2V_apSAS_ddUsoQB0W2CH-OK1tpYUj7fd06NP5riYy546swxn4wxIAaHKHr8W9U9i9Y53AyX58enVSABOXIqK1r1SOLjN7CQUN69xsuivr4A5OvHJE9VuR-8r2xEOqxiNclaIugMEU0P45N86FIno74dVhIx-v8T24DT"
+        }
+      ],
+      "aiOverview": {
+        "text": "在 2026-2028年 期間，全球市場的整體產業板塊正經歷由「結構性科技轉型」與「地緣經濟重組」所主導的資金與融資轉變，其核心資金流向與資本支出（CapEx）呈現明顯的分化與聚焦趨勢：\n1. 核心資本支出（CapEx）流向：AI 與數位基礎設施\n超級雲端巨頭（Hyperscalers）：亞馬遜、微軟、Google 與 Meta 等科技巨頭的 AI 相關資本支出預計在 2026 年達到約 7,300億至8,000億美元，並在 2027 年進一步突破 9,000億至1.16兆美元。\n供應鏈與硬體：資金正大量湧入晶圓代工（如台積電）、高速銅纜、高頻寬記憶體（HBM）及先進封裝（CoWoS）等底座產業。\n資料中心與電力網：隨著 Rubin 等次世代 GPU 於 2027 年問世，單機櫃功耗暴增，帶動全球資料中心基礎設施、綠電供應與電網升級的長期資本投入。\n2. 資金流向（Fund Flows）與 13F 機構持倉趨勢\n避險基金與機構轉向：機構投資人在 2026 年顯著建立了非方向性（Non-directional）與多策略的避險基金部位。資金流向上，除了傳統引領市場的美國大型科技股，部分資金在 2026 年上半年開始向歐洲及部分新興市場（如科技板塊重的亞太地區）橫向擴散。\n板塊輪動（K型分化）：13F 與大宗資金在高度集中的 AI 技術龍頭之外，逐步佈局「AI 受益非科技股」，如公用事業（電力）、工業自動化及戰略性採礦（關鍵礦物）。\n3. 融資與市場環境（Financing & M&A）\n私募信貸（Private Credit）崛起：在傳統銀行放貸受限與維持較高利息的環境下，私募信貸在 2026-2028 年的跨國併購（M&A）及大額融資中扮演了核心靈活角色。\n政策紅利導向：受美國《OBBBA》、供應鏈韌性（Reshoring）及各國國防需求影響，冶金工程綠色轉型、半導體在地化以及國防工業的企業債券與股權融資需求極為強勁。\n您是否想深入了解特定板塊（例如半導體供應鏈、潔淨能源）在 2026-2028 年的具體融資規模，或是特定機構最新的 13F 持倉異動？",
+        "sources": [
+          {
+            "title": "Oxford Economics - Global industry outlook 2026: growth where it counts。相關結果",
+            "url": "https://www.google.com/goto?url=CAESpwEB6zswFR7LzgVy476vTun46DZFpi29I_UiN88XOPGWpgZNaWYLVaWqUNsldvBIdh8f6SatXwZGsFMbSaHvQ76LPlmfVESjJ9NYWJSWWo7_YNsmYJm4T8mBLxGZX6RI92bxToLfdLJXP8t-kgB3MjAODlsGkUYfY5rpMQyY_vV6Vpt1bcxoJmtIHerrddFdJ2SdwUg501Ln4V7uIwxkuCkLr_WnjPHqwQ"
+          },
+          {
+            "title": "J.P. Morgan (+1) - 2026 Economic Outlook [Midyear Update] | J.P. Morgan。相關結果",
+            "url": "https://www.google.com/goto?url=CAEShQEB6zswFVB1rwdLpji_caJ8WpTvV1hxzVvrxXrcf-kcuShmR0cYoecXu2u6f5gs5e2w5YCaNYAGIdGF1bGYrtXEUekKaInQ9A1gpY3ue0u6YGKxeaQNEZUI1MNR-PRqtOBsVNrQLlSvvlSdZSWxZ5s3sfOA0QdusC1_j4nFw5VwNbBDsp8d"
+          },
+          {
+            "title": "富途牛牛 (+1) - 黃仁勳「銅光路線圖」定調！AI下半場從搶算力到搶「連接」？。相關結果",
+            "url": "https://www.google.com/goto?url=CAESZAHrOzAV6pwOtW78WNLzpdS9D4emrC064euWz550AoKJP4qLvGT7OCbGLcCkG9pho0Sv8hfz7X_MNq0m5k-nkUBWIPE68ay1xWmkwXEEBWp1h9KuXUOJVyRBLecBiD3dsd32mLI"
+          },
+          {
+            "title": "PwC (+1) - Where $31.6 trillion of capex flows in the era-defining AI build ...。相關結果",
+            "url": "https://www.google.com/goto?url=CAESiwEB6zswFYXIstuQHLGFgT81CmNbqnNUXJzI2dCMSJXt2J4MM_JnARu7oJWRHRbCrBD2RTdihEUxt1xwz_5znJUQkOorW9UjeKjs4wIQrp36ohlNJTsda79hRgUq556UVjUGoZuK0mDwNEoEkcqCO02atgfXYD0xwL725K6gt2AupmeA-_2_k849rsWC"
+          },
+          {
+            "title": "With Intelligence (+1) - Hedge Fund Outlook 2026: Route to $5 Trillion Accelerates。相關結果",
+            "url": "https://www.google.com/goto?url=CAESegHrOzAV59nW246ELABzZkCW_kt-xWcU1vKs7Va3tQRi9uIjho2WeiRlQLXU-l2BGGhvDBG6iyuZ1LAwap_mcgwZ9oBOCLVSlcLlgR-fnS7e_TaAfPoB5sXfq7U-Fcus66F8tMpnyymaVTbGrzYPPFqyY0MBN08DJB4h"
+          },
+          {
+            "title": "Charles Schwab (+1) - Global Equities Mid-Year Outlook 2026 | Charles Schwab。相關結果",
+            "url": "https://www.google.com/goto?url=CAESdgHrOzAVHtjj9VFMGlieJItrzOl38AFH72yZy9qWUM7VLQwj4VEgxDVMvWtMeKhwWO70P9FJKa1d2RSnRNIwxeMFfJsr28uUWuPvazgQQTIPcQ0uAXzr3ovXyLn_YNCLHjKvdj-RGnk3zV9l4OpYedhaAZVjplw"
+          },
+          {
+            "title": "PwC - Global M&A industry trends: 2026 outlook - PwC。相關結果",
+            "url": "https://www.google.com/goto?url=CAEScQHrOzAV0Si1HR57fR1kQmtD0eyyFkSfGHaBs--Oo1t38arwc4boc0kZXFKycW58OnTg_FvpYG5e8st9tIFhRMsF-jr9LTYccG5y-WW9mDM6e7clYO9v7f9kTaqr8ndsx1Erf_yPJssPH54g6Zf4i2GV"
+          },
+          {
+            "title": "International Monetary Fund | IMF (+3) - World Economic Outlook, April 2026: Global Economy in the Shadow of War。相關結果",
+            "url": "https://www.google.com/goto?url=CAESkwEB6zswFeDmUxg1gtKkFItx2fjNlGv3r-F_WF7BHfa2PjgZI6X1cpJIkcNfLN6K_3HBxFqvs9fu2AhkeeJlDssu52xG-s1LmIat2ps4jKNvt8qESb9kH4Mz_oPhhFptOAVRS5GFDz2dyvI5UqQQ6tn5n1nIir3rXSVVoN4qLWp7dhkRbQ5cY2o7qO8Nn0ZT5vKXwbE"
+          },
+          {
+            "title": "2026年中期業績公告. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESagHrOzAVCEza-Etz5FS4-wabP2AaXD1qfISCgY0msO7JlK67ui3KlCt9jElBhai9iHhuTzTli-C-OMhkKaa_g1S5eCeGuih9cWx1TbdRKSvP9rFzzMV3DflL5Gf7VZ8cE4F4Ia5ATg14IZI"
+          },
+          {
+            "title": "Capex is back: what's driving the 2026 boom - explained | LGT. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESgQEB6zswFZIFdBZvPZ8x7XS67VO7RyZgYmXxU3_VQJ20Xz_UBtjHHcbG-zqPpLBbDzEi405fxycmJlgGfIqYyi4LPG7R_9BOwNMlKd-fItMp9KT8HcqmrqV8Vl0IWYHQ8DB39NxFXF_Z3YdfKbdWMpb3f_WKZL9NOgEsQymNVwJUfh8"
+          },
+          {
+            "title": "K-Shape Drivers And Risks For Asia-Pacific Sovereign Rating Trends. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESzQEB6zswFaXvqgmWJhPctV5rExrCuwcLujLWusm_VV8w0EB9KqUypVKshCaWHk6Dw1SiAKoyAf4ZANOgT_M0pAeyKtvWM52nm0tTFTVA0dNgC50eVQUP5XZkpqNGLFB9JCFYfAajCc_ckk9b9OYRXIFOKr3_Pmpyqc_uOBAUMceOrdpHwsyDS2RskDmYoU-LMISanUi4xzOTcDcGEk_hLXdL9CiA7vWt-8jacq5-CkZ2SAdpM2SQW2tAwn2UwsY8CKuV9KRURpFTo1x1vbNB"
+          },
+          {
+            "title": "2026 Outlooks: Market and Economic Forecasts | Morgan Stanley. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESZQHrOzAVDzr51f-Lnm-yvtHy7Uvl6SoBr3Fu-Z99fmsLAG0zW0XXwfIHCTppnOc8S1Yf5CTcjrbBjCG9KFLqATOaCXHpSFN6Ts_DpO4r190mMp1TLYPDOLIdMFNcpwzd0fZRJyf6"
+          },
+          {
+            "title": "Economic and Market Outlook 2026 - Mercer. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESoAEB6zswFSW4Xb7ch9GbzuVHkA_59jOFMcS8UXlUl4z9B7O3UjB9Yo2lM5yMlCijAy6R7NKUNErp_tJGGqFRL4z1hG2TypnItW7M8LFS8GKbT_GBlRGsL_f0J1pkU9ycV-NmaYiyaOTCX0h1nU9GbJqkAbtBABa1TGo4djhDq5Pcb43Ccohd6Sl7tVOCM9ZtnrYjvpxi1Wy00W6dLwdjmg8W"
+          },
+          {
+            "title": "Global Mega Trends: 2026 — Activant Research. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESdQHrOzAVWlgJ05Fy7zR3jooF2U6sJFpnKttCypqT57Q9AX5Ntq5O25fi4Q9xP09JXqIzPFCI1dy5HysKcOBI91XhVxlfPCKFHnsyLzF44Z79FWlrwNaGKbXgdFshVLI4HPBTWfRPqUGMcS17GrvcDNRpL-fqzg"
+          },
+          {
+            "title": "Morgan Stanley pushes back against the view that AI capital .... 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESnAEB6zswFQG7et5VCWERFgPCv415oUbcrw0_EjbA2-oj5t4g4yKupxCfNENO5dBtkfomHYGtBy0zfcLJtNcGjqSMzWBtUL5CByWnvHzjABPjY5H75VEvOOl2V3Of1m-V5TTuuDz8gm0IZBDK8k4YIgNxuEmSbemuzSpJDCmIawZpE2QksqLu1tuv_jImfT0e4MRG9C9F4kQnplJDU-E"
+          }
+        ],
+        "extractionStatus": "settled"
+      },
+      "aiOverviewStatus": "available",
+      "error": null
+    },
+    {
+      "engine": "google",
+      "category": "技術與替代效應（增長或顛覆）",
+      "query": "請簡單說明： 整體產業板塊 全球市場 2026-2028 (技術突破 OR 商業化 OR \"technology adoption\" OR disruption OR \"AI replacement\") (CAGR OR forecast OR 市場規模)",
+      "status": "success",
+      "results": [
+        {
+          "title": "萬億市值背後的資金洪流——A股爲何扎堆AI概念股？",
+          "url": "https://www.google.com/goto?url=CAESZgHrOzAVNL58l1QNWEKDMGfSkSKcJySg7fhZLpiX86wD2TkcjRqCYr8NDOer7zj8VPCa7BouPzK9zMhDdWTYZ5Av4AcFMts2-6ZIj7dEN-jAyRi8Pfo41WZ57rV03XZEsEtiAgKKzg"
+        },
+        {
+          "title": "Goldman Sachs 高盛證券深度解析：水電博弈與氣候變數重塑 ...",
+          "url": "https://www.google.com/goto?url=CAES5QEB6zswFfSgVKKZCmnHKkHJhJdpQWHr1jG886p9tFfFLVc-QGItwmNgxSMWf_luwJ4qjDRS1p_Sk-PoPzfwdavrebkWyjogyRmPD8ar1RYAQnpSS6yp1qwxH9QvA52zpvEOv5VI4ZEZm-gOhgJVMx1q6Q2EBk7EDRkaiT5WtKj5aoaHAMOWPIhDQUSlvJXB9hwLfK9R_C2X9xorkQ9QbrIYThLHgA7-wtzwS8hiLvKQuRnVmTk57vVty5SB_7i7n9HK5xP3wADGjMDrHM5cyCRInqDsf2F3r0cyyUb0LVdcF_wQz_BJ"
+        },
+        {
+          "title": "AI 产业链全景研究",
+          "url": "https://www.google.com/goto?url=CAESaAHrOzAV7Iv5m5mD5ZPzbvmsaR7hKo2x0XSUUZ2GgpJCW-yjW1fv2eM4fQIUH5gRtey-bstCNmRdaFljDy-iDSACdY1MFFeAZuSzwHl9BmCCQzc66tzIBWAKLDDx1-ft69ho0RnniK7v"
+        },
+        {
+          "title": "3443 創意- 為什麼突然冷清- 股市爆料同學會",
+          "url": "https://www.google.com/goto?url=CAESZQHrOzAV30B30oIVKEFyzTUWhUqs-x5eIN-7JEUVJeeMBF5OgP2CAkMDuIBljYIcnhROFLnZtwHxoox3gSkJM7pBhY-wHBpoIk2onbTjW71lg9sN1nfLeuqgKgEZaB1ze3Ahn1y8"
+        },
+        {
+          "title": "未来十年人工智能自主智能体在制药、临床研究与生命科学中 ...",
+          "url": "https://www.google.com/goto?url=CAESdgHrOzAV7VP6EZGzZ8Hhdt7JMFn-iPycITxTOwiwQ3W_Obe4abjgeJLGWH2geTI5USWzamGBTU1TUZxD5Jt5SGi_6oCTqvQUSYWz9-Pa1MLHvj2PXEMqiD3JIdT5xz0AzOHfR4l9ORyIwuqt1Uaz_leU7Z2OYQw"
+        }
+      ],
+      "aiOverview": {
+        "text": "2026-2028年間的全球市場正處於從「AI 實驗與訓練」走向「全面商業化與實體落地」的關鍵轉折期。 全球人工智慧（AI）市場規模預計在 2026 年達到約 5,100億至 5,500億美元，並以高達 26.6% 至 30.6% 的年複合成長率（CAGR） 狂飆，預計在 2028 至 2030 年代初跨越兆級美元大關。摩根士丹利估計，至 2028 年，全球將有近 3 兆美元 的資金流向 AI 基礎設施。\n三大核心產業板塊在 2026-2028 年間的技術突破、商業化普及與市場顛覆（Disruption）趨勢如下：\n1. 科技與基礎設施板塊（硬體、雲端與算力）\n技術突破與商業化： 隨著 AI 模型進入兆級參數時代，市場焦點由「模型訓練」全面轉向「推理（Inference）經濟學」。共同封裝光學（CPO）技術爆發，有源電纜（AEC）內建晶片技術延伸傳輸距離，混合雲架構與主權 AI（Sovereign AI）大行其道。\n市場預測 (Forecast)： 2026 年全球生成式 AI（GenAI）模型支出暴增 117%，特定領域語言模型（DSLM）支出更成長 210%。預計到 2028 年，將有 40% 的企業採用混合運算架構。高盛指出，美國 AI 資本支出占 GDP 比例將從 2026 年的 1.8% 攀升至 2028 年的 2.8%，美國資料中心電力需求在 2025-2027 年間將呈現倍數暴增。\n2. 企業軟體與商業服務板塊（AI 替代與自動化）\n技術普及與顛覆 (Disruption)： 傳統 SaaS（軟體即服務）正面臨「AI 原生（AI-Native）替代軟體」的巨大生存威脅。AI 的應用模式從單一功能的 Copilot 演進為多智能體協同系統（Multiagent Systems）。使用者界面由「切換應用程式」簡化為單一的「意圖驅動界面」。\nAI 替代效應 (AI Replacement)： 麥肯錫 2026 全球調查顯示，40% 的大型企業已開始規模化部署 AI 智能體（AI Agents）。儘管高達 80% 的員工感受到生產力顯著提升，但有 39% 的企業高管預期未來一年將因 AI 導入而裁減傳統人力，尤其是重覆性高、基於規則的業務流程外包（BPO）崗位正被新創 AI 快速取代。預計到 2028 年，將有 33% 的企業應用程式原生內嵌 Agentic AI。\n3. 實體產業與垂直應用板塊（AI 實體化與生醫）\n技術突破與商業化： AI 正邁入「實體化（Physical AI）」階段，即視覺-語言-動作（VLA）模型與機器人/無人機的深度融合。\n各行業預測：\n智慧製造與物流： 工廠與物流中心全面進入超自動化，例如 BMW 讓汽車在廠內自主行駛、亞馬遜部署百萬台機器人並透過 DeepFleet AI 調度使倉儲效率提升 10%。\n醫療與生命科學： 2026-2028 年自主智能體在製藥、臨床研究的應用進入法規合規期。預計 AI 醫療與治理市場的年複合成長率（CAGR）高達 39.9%，全面顛覆疾病診斷與新藥開發速度。\n農業與供應鏈： 面臨氣候變遷與地緣政治波動，企業廣泛轉向 AI 驅動的預測平台來管理碳預算與防範產量中斷。\n如果你需要更深入的數據，可以告訴我：\n您特別想關注哪一個特定的細分產業（例如：半導體、生技醫療、金融金融）？\n是否需要特定市場研究機構（如 Gartner, IDC, McKinsey）的詳細報告對比？",
+        "sources": [
+          {
+            "title": "Grand View Research (+7) - Artificial Intelligence Market Size & Share Report, 2026-2033。相關結果",
+            "url": "https://www.google.com/goto?url=CAESjQEB6zswFUhZxt_GvrgPrDM0MlYV-1KFSX87a8Et4Xvgh0XsaXem3ZbO7LexGF11RdlQuSsMOMH2Wqw0KsCAJ3nghkT6JUUG97l1l0xk1bQPaWMmly6ZLnp8sAxQK6IP2ZPjaZ4S2ggWXLPXYdLMnaYVTK7uWqGsJG6TVbbsr0qKRBNhPiZwi4jJ72X3Zvk"
+          },
+          {
+            "title": "Deloitte (+5) - Tech Trends 2026 | Deloitte Insights。相關結果",
+            "url": "https://www.google.com/goto?url=CAESrAEB6zswFToPJrrRU2vCuJfHJiMev4LzDvOBD47i6XDaKggWiceNHtwGZWWsh_RUXfXGhuYmxwrP7-XbdDBTGfC44I7bmYcB2ZDnbSgMzWLAVwaIySTgicS3bRipQ6XxaD_IiQ-ixx9wbXidBc8i7Bl-RY8VDg6sb-nYh0FmZS_L4n3FjdP1UwgDwsmKNxKzfnaqnyz-7XSu_foqxLN-kUy-UzLFqIH9YlUWkpje"
+          },
+          {
+            "title": "Goldman Sachs (+3) - Global AI Investment Is Forecast to Exceed $1 Trillion in 2026 | Goldman Sachs。相關結果",
+            "url": "https://www.google.com/goto?url=CAESoQEB6zswFSKCsPmdMXBVaKPbSOyGfKwbPRhKPwJQ7CZFTUb6iLKb2lnWyVUa9-hj1dQ9Xx6XC9_9GwvebGsV10d5_jFXRoo7lN6WEtd8CHtcldGrfuNwARYvmwZOb0BHFBK4yW7VwV81-jqzHDLSzsKq0CkH99UsjQG5QgxmMqEy9bEEZUq7PWOG6asLfJ1CbySneTDNudKo9acm3G59spvQcw"
+          },
+          {
+            "title": "Gartner (+3) - Top Strategic Technology Trends for 2026 | Gartner。相關結果",
+            "url": "https://www.google.com/goto?url=CAESdgHrOzAVngaLLePyxuBe2YH7gpMP3j39nqUKbnEaMMnRrcOOOitKdKYQk0z6Ka-6Ed0WxK4Zcd-oRdZsudi0ZpQa373DnGhTwTxmjhY990df7EFAD5RbZOWWPifJFyu8rlyzmyEAqMHmnL1jYEhMtWUULsF3y18"
+          },
+          {
+            "title": "McKinsey & Company (+2) - The State of AI: Global Survey 2026 | McKinsey。相關結果",
+            "url": "https://www.google.com/goto?url=CAEShwEB6zswFUlN-gAp7XadoypAI83ltfNzcBDHaAsp41_XniiTee_8xv-NjNrtajmx4KvW0ogqnu-FnCLSeuIrXPA_dYkByge56-XOkWMLV7ALQ-Iu1p9jxeoNtX8x8sJD-RJrqeKG-p6BgNj23neuQuYd5OIpIGKS4Qpzrf1kWb8b7iALeU-jCXo"
+          },
+          {
+            "title": "Elite Asia (+1) - Top 10 Technology Trends for 2026 | Elite Asia Insights [Updated]。相關結果",
+            "url": "https://www.google.com/goto?url=CAEScgHrOzAV0_RUhLLu0vR3MjEPmu5JAYojnmunzhiOtTuZmGAD-ENu-rzyXltd_wBkcUR2wbhjsYOroJhRVR2QSrvjDQW_BenWBI73f1ptgd4pS3WvxmjogCE-Jeuel7Ry4zKW5csRWdRl2rlRESMJCLV-tw"
+          },
+          {
+            "title": "Grand View Research (+3) - AI Governance Market (2026 - 2033) - Grand View Research。相關結果",
+            "url": "https://www.google.com/goto?url=CAEShwEB6zswFY4yyc9lsZeXGTH4b6fE-fzLtj-_vS1NEnZJet1kM5WSYyjmIY_u110zRtzL52M7g9QVScTNW3YqrF2ncRfGBaVT7Zv4Z-DB7B9fLtQM-LD2NSfUi8ZVJDSlc-B1xop_PWIk41b-O-OLy_2iOsT-fYXBbMowxh1Vb4i6IlZEC0YOApI"
+          },
+          {
+            "title": "銅纜，再被看好！ - 富途资讯. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESYAHrOzAVGJSM9LEz5WgEnxgjcd8G_qth-9KbbWCZS0EeSvHjv4Wl_Pb0x_BGP8K332-LjL03BwJcPw4JC_Bl42Zv83HxICFYx_WbIUJsFIvhIMeyigt29LIEde0_gZ3zvg"
+          },
+          {
+            "title": "Goldman Sachs 高盛證券深度解析：水電博弈與氣候變數重塑 .... 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAES5QEB6zswFZEF4V40XOZAEplZU85zt8A2ZT2OYrqS4cgffISwGMM0TRExv4aXyTy0S5tK61j0rVuB09q5Upty50b33eprcwjv3eBj7x9lDHWDBJ40_883lErACb70pf6Un-_tqGNt2WR2at6gjdNslHarYqQCWPmpglTLDvxfmZFKV0gSXngvr_3sVtqh9KMHH_58ugpoyHdcZ-o9at-_yZnts1UGx8mEMvPblKqugp_-5vKg0RWTusgRkB_k3XecD7jl2A1C7dSxkWHrfCYpme9xK8Ga8UoYKSuiDpMK0jSx9Lg2Y-Yi"
+          },
+          {
+            "title": "未来十年人工智能自主智能体在制药、临床研究与生命科学中的 .... 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESdgHrOzAVovpIrbHdtKRM1YaCjDZ6jJYXJRtf2ZariN57foqysF9k10nz6arXxo_XlsfsDN6g8O3vTaHx4uGk5UxQ82BrT3a1XM2Sz8D0vUb0lpPdztSp8EJD7WC2e-I-8KwnjJur1yk_0Hu2jFP2tJn6ZZHewdI"
+          },
+          {
+            "title": "奇景光電#HIMX 跟2026 第一季財報. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESaAHrOzAVPSfYeXpg3SJPHnHcDJE3ldh56sDSnkDJrJ5Ar6yOcsDLa4G55dP3wEMxwQ0C9NC0iObQxTmKDmcU7_nzQw5MW86uvsS-M3yd-urlV5EMxKti9cyyPM-e4MAseF7hsIH9lGt4"
+          },
+          {
+            "title": "Key Tech Trends & Disruptions in 2026 - Ecosystm. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESeAHrOzAVH2b25xZn1J_lKZJ2OCd8NYPpf-oBFlEO-Hx5d3YLcIdaRAjpa_il7yTw-_gjqOZdZT5V4d6lX9ga4BaXVptHA_4eFxZiFszqld9tbkglg74KQdDb7ov4Jsc3NoQZ20ifk27TXPIC-LwOW3Xvop6nZN_brA"
+          },
+          {
+            "title": "Artificial Intelligence - Worldwide | Market Forecast. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESfwHrOzAVwKnLprmVPeJT0TsSOZrcqsZeck27WjdyqjEDjWi4J5YElKXekO15NxvgcZxmF6cr2DIginwVmC1apz5WEDWlZlJE2vKI8Pmyjt9g9S5GyxU3o0k496Y1akPq29gKD6lsoFFkX5tBKp9XXeA56rB5eQBj0NXaaH9BMV8"
+          },
+          {
+            "title": "AI Market Trends 2026: Global Investment, Risks, and Buildout. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAEShwEB6zswFbj7ZUdjoyme--B8GQirjBu6z9Sp-kRdd_omXv4KG6fIbNQPxAmjBQeYZ0MfU7t9hd9B4ag-eXFVcQ3MGddqRLqKnU-mSiYchtD_ukmxraa9mzaXmVZXQPPz1mLmPwjCbGer82oTXcoggKIy6jWhRCi7Da_UVKbtVCl4C_b__DLMoPc"
+          },
+          {
+            "title": "2026 Emerging Technology Trends - JPMorgan Chase. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESoAEB6zswFegRaI0Pb1V3Ed3j_dbsZeZSbfOHeB6lN8xYw9Diu21ScRlq3dZ5dz4LpSW_iJix5U8Yzev5e4u1_2lgjgkPb1gWN3PXeIhAc1uD0GaknR919uc9j_oKNGGnR6bnHCBuHt9X9cKyGNcbMfZ4c6y_wweNwdcetS-0aLnsJ5ZJcP4CKBU4TP7GVVd9CihIn49qtDWU9R5k58rMlO6Y"
+          },
+          {
+            "title": "Tech Trends 2026 | Info-Tech Research Group. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESbQHrOzAVi_IGlY5U9cftqHdPG8O8EHdrC7dSvfmrv4jmEVR6Kav0_oWO2CCbdaxjutAIszbilC380W6qxk4JP-QzOwgqg3IA-aBEbL8vhzOrHsJ8o1kiy40voGFq1TO1i-AhTHmRUHMoGBPzQJQ"
+          },
+          {
+            "title": "Artificial Intelligence Market | Global Report 2034. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESlgEB6zswFUwPRv0WoG5KboSb6xH9-Tswi1KbfN6sY-zh8AidOYdTqCCfS8oBfzkJly1HLB1gIgZSwdaaaNDFAIMmxaxX-hL-Jg3nr81FjbqRrvNWrpesRGOQP5kNx9mEdu5ZFHSXwwa_fq8DwxfGmPHR9IMAS4BYwOXrPLGY8Rn2Nzdeh0UqPVJ9KOvxF-awGP4y-ekIwB8"
+          },
+          {
+            "title": "Technology trends 2026: 7 trends shaping the future of IT. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESdAHrOzAVbz24RhORCt6BKvLKLej8_pCcmqCyc8ZVpO3Pd60JUhzHGHZC0HKUzLuQGPxfLNiJZzsiRSXyU-Tdu6oaxgqzi__XN6kIQHSTilrorJbGf873_kqbnr5g-LQATAg2KwW2yiSQ-9hFn6zaOrx-WVfa"
+          },
+          {
+            "title": "AI Market Size Statistics 2026: 26 Charts From $94B to $1.67 Trillion by 2031 - TechnologyChecker.io. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAEScwHrOzAVtKk7pqwIrHqubTgsQXxbztn2IAL-86osr9indp--MWk1Y95MeC-YYGBCa_B0jI1yhlA8Ev4bc-R_yebRF7BX4Whd7x8_NQ_ygaDsmMnnXtsmtMW3YvwH1DJY1rr7fjUOHV3k-IgZbiPNsPInLA4"
+          },
+          {
+            "title": "Tech Trends 2026. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESiAEB6zswFThHbF8gX28URuPCvN4wCYZOBMVUZDNa6HGbRjbMlk_jz_o5ke8QDepv2n_f0XGKbq3orodTi1Q8KPOtkTZ3eOdrpbLYt2CpoKO04dtRrvZOmCPu9OAuKlOyo-MOxa_ad0kCPiqzqKeC7yJ7ICKn4GRcDLzUx2roDWwzsryMjY4Tq8qI"
+          },
+          {
+            "title": "Artificial Intelligence Market Size, Trends, Share & Growth Drivers .... 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESkQEB6zswFZLVlQT9HT_jQvosb0ra8WeF6qfH7RkSzynzAM_UfY3gWalTeEWlOPUk-wtGgYqrVKUOvwN6r7GSUsz_XJXmMSWvo6b-gEH1eqb-ffUEgxA5Mg2cLnu1vOCIpVZjNgIMwjLtOZgQmpf-EmQ14y-fkCIMrruv24V4Ig3IwOy0KrWErwmsQpWChGggkFS1"
+          },
+          {
+            "title": "Gartner Forecasts Worldwide AI Platforms and Models Market to .... 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESzAEB6zswFetEpSC1ab07D7wueQM5ncfvIro54NHaLQavIzLHBa1eQ40BsHb-nv7f63ajXQnRrUxkrr1CQ1nGE5RbHhMC-CzgxRRyM36SKrwPU-wV37ezzwZ9-ePL5VeA3dfBGYxd3r-F5IfxIRAk_KvyDHzrykAYH7PgLrP_I0ipUBXzomX4vexZ9zTQI5KW0d6QHw0wpe4hbkijOuszqILIZ7Era9jPnCr2_BiQcKMWMqBwstj2a7dqPs41Y8IwO9m0He88S6Wm8S67haA"
+          },
+          {
+            "title": "Artificial Intelligence Market Size, Share & Growth, 2034. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESiAEB6zswFSvRxQc9yEKkD-QheMlA9yd7Opbm8pOI4ocI2V3NrhGvSazjErC4ePAD55pcri8SJCalbzV-IbA1q1hd9dBFb76C_oponL9P4OsqGKXzF95KrJ-_G3miwvJqa4R7CJJymepasgquV0V4bbqlfGnKXUjZV1KYYMNehLwip8dCjOgQCrjE"
+          },
+          {
+            "title": "AI Statistics 2026: Market Size, Users, Adoption & Impact. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESaQHrOzAVRhLoLZuH6YVhG-uNSmKcsnbDSSMTeb0gTxIRQixpcI-OnuF5y2hwjdWRIeu8VRTvN7uay3pJCWM9dofmvOx9fC7WNxS-8KrDv-26oB8Mm_syFKwj916gZsBHS_1Pn890Sl7mkw"
+          }
+        ],
+        "extractionStatus": "settled"
+      },
+      "aiOverviewStatus": "available",
+      "error": null
+    },
+    {
+      "engine": "google",
+      "category": "產業數據與專業研報",
+      "query": "請簡單說明： 整體產業板塊 全球市場 2026-2028 (\"industry outlook\" OR 產業展望 OR 產業趨勢) (CAGR OR revenue OR margin OR 利潤率)",
+      "status": "success",
+      "results": [
+        {
+          "title": "J.P. Morgan 深度解析：2026-2028 供需失衡的超級週期，AI",
+          "url": "https://www.google.com/goto?url=CAES5QEB6zswFR1JmGWREBWqvLV1nyytNeg5UcunIfHSsweWYbfMV-KuOlX36ak1Q2xfQanJtWZozm2HxAsxBa77RVr5_trP2Q_DjUGL6NsyhpMccZ5cPj5HcQLyDpJCXBNH5Hr0UccgB7vVqfPHPU3IaT_q87sKUf7A0216wJ-BDdB6R-klvFAnZqqvq1monHiGzOaDybKM9Fx6rcB2zwMso0DXo7h4HcQbiHOPftNCbk6s8lTruv6bFK9d1hUcd59Jn4_5K5BscQYPlUzpz3KV-6g8HVu3kwI9g4LqNEMyzEkn8W53R3dm"
+        },
+        {
+          "title": "未來成長動能】 • 公司2026-2028 年將以既有業務 ...",
+          "url": "https://www.google.com/goto?url=CAES0QQB6zswFW4lw6_YT_RJLnhoXBeh-iY0SvwgwLyjpyWGPzlbQ8-6ZSZ4NfDXaojhXD1wo5TrpKKXaSyHeXKNKRy4S6094cjMibZC5a4LrajBxQZU7uukEJrF-DGFEpxOEh8jNCvBqJUQYA9RhGbNEvCAUehLT9TxjumCTGfp3PnerTtShMDZgpaUf3mncQED7xmcVuC-4zwjL3eajm3adTRZqC9mbWjwRVxLwOgFWk1Iho_6Aq_TEhm8wBbekohQaQMXRQdhKds21gKuSm7C-d7GZgdmailCcdBsk74XyEsMbcWf_jjo0OtKhoRA9ID6q6yydJW3lMBGY8PgxDYFKlnjUzE8MDnQvE8yo23IjdA1ET7GU3EyhNUnr1sFECeWA0rih9y8upkCiBlXGR5h2G9kOx9-rngbgKQEXT6511DqQ16XLPJ8jz6mIl_YjqveEADpET0I5LP3h5vGk9DeQBGaXjyP_7q5Kz-4aLxsQBLC5TWTnfc7DYC_aPLI8sxT4kzS7ITXI-G7BOIjGHunYiBgnr56W2Xj0mS7yeTZQFoC3rgRneXBk5KiJYSg-Yg_sXaPMfsfCO-zq5OqGmynkGfkAClxv3ltzDN8Ze2wmja5m8xdJGeN0D1zUTM2RsUUZDQkWW-YJI9CnR-_4CDuYa9Ng9EI4BvDlG17L2dk0VN1cgTSV4NM99NEcvvNpylPW85_ziKZhF2bCdYzvOqyQVtUhfJpRpsLNpzfzuXMPqm9mqQg2bbKfXXe88nvmk_WDtftdi4qP-4S1fC4DDhBtmkoag"
+        },
+        {
+          "title": "Tony Xu 談AI 消耗、原子與位元，以及1% 進步心態| 第55 集",
+          "url": "https://www.google.com/goto?url=CAESbQHrOzAV1AmgMdnu5FdggUDIkqyfWLmcag05CNAUZl1gsRFL36TYO9LgxEdWzqWCzyqtHCCB7Dy3b2rDyju0SVAiaMYXsRRXi8BwR6wsvazw15quhgTdkN3V0IGXrqeNHd2yezdS4-FkdBqhRTE"
+        },
+        {
+          "title": "我是產業隊長張捷",
+          "url": "https://www.google.com/goto?url=CAESdwHrOzAVluOZ_Zw4bmqm3yE4cwobcnA78DikpM8ERcdH1NtidN92lnOdUUsDd3OXyhG3kgHv18_k9UeV6xOWujZ1eRmpdCnZ8LqRxMzMFz9FzBPBTmbOSNnaCHH_XOee57SEm7cvEbiIvLir18mnUT60NdlpHnr3"
+        },
+        {
+          "title": "2026/04/28 Corning (GLW) 法說會：Q1 獲利大增30%",
+          "url": "https://www.google.com/goto?url=CAESaQHrOzAV2BKy9tPzvje7YK1EwMDIY14sJAjA_w3PvIaOBmSBHPkHu0cI3a7n6HkZJe6uzB_WaQZRGHVCqLmxRmC_mY1TU8cJsveLTm1UuC1r-J-7NgvLUVWaTBCRG8uAoCICefayHZ_0fQ"
+        }
+      ],
+      "aiOverview": {
+        "text": "在 2026-2028 年 的全球市場中，科技硬體與 AI 基礎建設、綠色能源與冷卻系統 以及 先進製造與精密醫療 將是成長最為強勁的核心產業板塊。以下為三大核心板塊的全球市場趨勢與關鍵財務指標簡析：\n1. 科技硬體、AI 基礎建設與半導體 🚀\nAI 從軟體模型全面走向實體算力建置與邊緣運算，驅動整體產業鏈毛利大幅擴張。\nCAGR (年複合成長率)： 預估全球半導體市場至 2030 年前將保持約 8.6% 的 CAGR；而 AI 專用高階晶片封裝（如 MCP 多晶片封裝）在 2026-2028 年間的 CAGR 更高達 12.7%。部分散熱及元件個股在 2026-2028 的營收 CAGR 甚至上看雙位數到 100%。\nRevenue & Margin (營收與利潤率)： 隨著 AI GPU 叢集規模擴大與頻寬翻倍，光通訊模組與 AI 伺服器營收迎來爆發。此板塊享有強大的定價權，以 AI 伺服器等級的製造材料為例，其毛利率高達 45% - 50%；S&P 500 科技板塊預期利潤率高於歷史平均，帶動整體大盤淨利潤率在 2026 年預估達到 13.9% 的歷史高點。\n2. 綠能、電力與高性能散熱（基礎設施）⚡\n資料中心步入兆級參數時代，主導全球擴展的限制從晶片算力延伸到物理環境（熱能、電力與水資源）。\nCAGR (年複合成長率)： 隨著 AI 專案由氣冷過渡到「水冷散熱」，資料中心冷卻市場（Cooling TAM）預估在未來幾年將維持 45% 的極高 CAGR。\nRevenue & Margin (營收與利潤率)： 大型工業巨頭與雲端服務商簽訂數十億美元長約，綠能與電力基礎設施營收能見度極高。受惠於平均售價（ASP）上漲與營運槓桿攀升，水冷散熱與配電板塊的營業利潤率在 2026-2028 年間將呈現「雙位數」持續擴張的趨勢。\n3. 先進製造與自動化工業 🏭\n面對地緣政治與關稅保護主義，製造業透過自動化、機器人與數位化（實體 AI）提高供應鏈韌性。\nCAGR (年複合成長率)： 全球製造業產值預期以 4.52% 的 CAGR 穩健成長。其中，工業機器人、車用電子封裝等細分賽道增速較快。\nRevenue & Margin (營收與利潤率)： 預估全球製造業附加價值利潤率（Value added margin）將維持在 22% 左右的穩定水平。企業利用過程自動化（AI 導入率達 62%）成功優化費用率，確保了在總體經濟成長受限環境下的淨利潤率空間。\n若您想更深入了解特定板塊，可以告訴我：\n您最看好或想查詢的特定細分賽道（例如：AI 水冷散熱、車用半導體、還是機器人？）\n需要評估的市場區域（例如：美國、台灣、還是全球市場？）\n是否需要特定的個股財務預測比較？",
+        "sources": [
+          {
+            "title": "LinkedIn (+3) - Key Trends and Opportunities for the Multiple Chip Package (MCP) ...。相關結果",
+            "url": "https://www.google.com/goto?url=CAESlgEB6zswFdrRXRlrOw74OTLEhhHLTVnFqGfXiuPafb8IWCodFXoH6PdcePHmaj4hU2iB7T_2dF8oFQie_thpRq3XNJVpMh9GwKYoJxmmBq2UdyG9oZD6jk_RjZLiYmhGvfaCtwypC07tM1iMrg4XqY2Z_phDnM1SFGnNKRM7jX_N3ur7rODefls4op9ehWcz6nlgnRAwmsI"
+          },
+          {
+            "title": "www.pressplay.cc (+2) - Tony Xu 談AI 消耗、原子與位元，以及1% 進步心態| 第55 集。相關結果",
+            "url": "https://www.google.com/goto?url=CAESowEB6zswFZS4VS1MiHR2pyKljj3SioO87EspMWbtYzArk7qpo16aYh14UP-OUodMEzFkfYtFj24XfGBQKilWhPFIPcu9Z8NrhWG-CC3zJBlRcridAFA4fR40neRptykfT31Jvi260VEseo7S0mvCgPnHpYpA5F63bGADtm0HScjSDqmMQrbYBOeTrmPiC71retfGZ5_CtjdgUYRRv9VE4cW_sxsF"
+          },
+          {
+            "title": "資誠聯合會計師事務所PwC Taiwan (+3) - 2026 全球半導體展望報告：半導體與未來。相關結果",
+            "url": "https://www.google.com/goto?url=CAEShQEB6zswFc6M9w4PD_Nyo1mnsvk5VXeCJdbpFe5Bvo9xx2jmzaO2nVLHmsA6iP3HLdYnavWsrRo1LzcxLHbtowvJkC6ghCtWgoagFO7f46z1s4t5Inlcr__4Hf37ge5vAfXFDgH_hQc7fdWDKhlvCpUPrV_bBVVsQ3G5prfrH57EhIwf3SD-"
+          },
+          {
+            "title": "FactSet Insight (+3) - 2026 Outlook: Converging Forces Shaping Earnings, Capital ...。相關結果",
+            "url": "https://www.google.com/goto?url=CAESsAEB6zswFfjpsBKZ8yFgds_FKYEpz0Epm7j2EJoLz5yEFLCGEq7a16GFwolLTUQJ3vjFXhYgK9W5G6_jPa6Sf0B-o17XwCnZMTMs6pO0jHk7WsfCx1A9Eq7aZRYliwyOwI6LKHezwY9PaF4VLPPnjwxEpF3_KFbuSryPVb1p2-Naotx0DMaxL4N_OJPZkYtgrZkZCkO5zTJpq-iLrfHhfxJCoyH2AhWHyyBd05YdeVg18w"
+          },
+          {
+            "title": "www.pressplay.cc - Goldman Sachs 高盛證券深度解析：水電博弈與氣候變數重塑 ...。相關結果",
+            "url": "https://www.google.com/goto?url=CAESowEB6zswFXFmpUMpOppKHH9HbTqk6SD_iy__IKvQ6cd5bXJMFeN4I9Igtz4Wb26yL8jvg8aL2funz8jstHZGvWPVTYTTAn9heblaG_TaQBjLaoDclbXkqpnVnmUetEEccFAllK3rr60x4WRS1V25GOCCjNY8etjJA2T_s5_hUeK0AD-9J5v6F3sW3RhKwm342n0qxF7r3XHBOI4KLfg3tYcbGznT"
+          },
+          {
+            "title": "Statista (+1) - Manufacturing - Worldwide | Statista Market Forecast。相關結果",
+            "url": "https://www.google.com/goto?url=CAESdAHrOzAVhxheKwW7525OfKSdJyFE9Gc3rU3NxTxmSTa0irjVBskshUo35dgbS3c5Bubm65X7KZTsS4UVb4LtrttB6Ysc9-kcqfxyCa3XTyNhK1P3HQbD6Pe41ExQY-Cjp2lT6y5AN9YEe1gEqahLWdKUJQ_w"
+          },
+          {
+            "title": "Vocus (+1) - Q1 獲利大增30%，光通訊再奪兩家雲端巨頭長約 - 方格子。相關結果",
+            "url": "https://www.google.com/goto?url=CAESaQHrOzAVs7WprBgHosYMwfGpbmGoxaJI_0e6JK4-sLTQZGfHAFD-l1VhGaFBuatgXGNbuuFFRSgiWaSOeXBJMoEkxALadLPP6MgrtOdTnEW59JSIbkGDQhu27tFlKnGH4uXVnZTuUDlT-g"
+          },
+          {
+            "title": "kpmg.com (+2) - 展望2026產業發展趨勢 - KPMG International。相關結果",
+            "url": "https://www.google.com/goto?url=CAESdgHrOzAVjybIPcToPskVhXoV7Go2xHJbVoUOHuUcwPpwgDUd_LGrFvoFKDCSXpKWkbw-Ulq4eC1vKbXTseJd9frwFNctthgf9Xd1Ijbn5AmU9CvYlCabI3tV_0GnPNb2kDFrwHUgyFSYjzTcwvXJIEPQSslPz1U"
+          },
+          {
+            "title": "HKEXnews (+2) - Midea Group Co., Ltd. 美的集團股份有限公司截至2026年6月 ...。相關結果",
+            "url": "https://www.google.com/goto?url=CAEShgEB6zswFd1PdTQvbWqunL0aKgUumLgOWhR7zff9Pm8uFKYiFvaP1oH7-5fp1gwnsu8Znin0jbr6kF7vmVF33Oz8vsVLoVb3wUdvu6wAUqGlivv87f1kKLVVqpxKkbbq3K8-g5Vi2UtCnbctimFCGEcAaIhsuCZtb0ukxgauvxj1CFUnRPoTFQ"
+          },
+          {
+            "title": "J.P. Morgan (+2) - 2026 Business Leaders Outlook: Expectations & Trends - J.P. Morgan。相關結果",
+            "url": "https://www.google.com/goto?url=CAESpwEB6zswFfnp4SJYc0wOUyS9GAaH1dCP0Qn36hHJgSpOFGp9aZ16BfRVi47L3EiSKYMApEFeGxhoP-JHk0s28Zf-B32MEWTJ0CERlayBuSNx0dipzAUcbvqgQiRRlrrEwYklmijbeBRyvKOhUm42Zm-_LiW_9V3f_Jt2kL0nfe8vE-ZHL4VWP29APSDvMQ1IjQnl1sNMzNzzzPTIvAHEjDeBi9sbWYty1Q"
+          },
+          {
+            "title": "J.P. Morgan 深度解析：2026-2028 供需失衡的超級週期，AI. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAES5QEB6zswFeMrydmfocbl8vH_ZONUvR8GBfidfJ_U6WOwNfCFxB3feDGBfUsIyWGvRYd_C3yXe1Ga17yGJtiEQF4H997aG1wFYk-i1j10W87Kc2h7bWlhh3GGA1JVOO4tZkCDjYMp64etxcjUog5m7ov8KasRHYDq_ZTdsjpFiHEfV5WMEJHY7_OtvWuMBMEQhV5ct_-FaD8SobJXXgIJ3R4PlEd0OEMmIMUdiR-9wd35-aMYjoxMvYivvEQ6TSsLdlL6nNKByCLNBGFWM8sM1O7V6NVbgQQ_CXHjigP2XTuvUI9O1y4e"
+          },
+          {
+            "title": "我是產業隊長張捷. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESdwHrOzAV-3C-gaWQDtsFgLLfYBEaFwR7PnKT-d6re-2--wVWcQiDjeRg-cT_J3GDMgLmCC97O5dshxVjx29n98A1nFfzRRuqd0IW4UrdAdY57NnulDNbcKdCnaDvBp1v1Ax5K9TVBPMnbBAhsy539nGNI0dYnXz1"
+          },
+          {
+            "title": "Goldman Sachs 高盛證券深度解析：水電博弈與氣候變數重塑 .... 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAES5QEB6zswFVv_zzXuQJKLwU0L69YH2CQ9GSgBUD78X9vUowSPhzKHtRYVo-r8i6_ut5THB2RQd6kJvyPKbYB-BL5GxhZso7Rb3iAzta4F34CM8jPFwvMv-w9xX25E5dhuRSw_2vXIHKTz-qkUp4XgIWWLS7TsWxFjp4z0vvXFuHsOBEDqNRVURClNWpCFCx4mZvJwF8VBI2nMr6pmbS7qXYWVIg0nZ_v9pE_D4B9Qq7O_sXSgrn08cBOQkeNnrT8Vo-RccZ69cuASadE9mhxHZddW1EUNYcrxatc3AVREJPYJVAHtWZZa"
+          },
+          {
+            "title": "Tony Xu 談AI 消耗、原子與位元，以及1% 進步心態| 第55 集. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESbQHrOzAVyQBDt0gzAgtAIr46TCwqTfWkX3HdowggwQrNUzuhZlkafeidnqM3StqiwsjOR8wsQt73BNCcQl91osO9tAsUaWvh59cC6mVWbJJjXGfnctP_aVp5oANOEtBj7EPlr8lgxzGgTMJN9Hk"
+          },
+          {
+            "title": "未來成長動能】 • 公司2026-2028 年將以既有業務 ... - Threads. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAES0QQB6zswFep4jvhMA1kHAT9Q_4rpu9yobojSl25nSLpr6jGj0p5WaPNcvz9U6xMMZYw2B9LORtio4n1Ere8FDnO9URK99Zd43W2m64kpkfVDE-YX6LUsl-0T3cuClYMRp2dGfk2B39fB-MBPaIZTQjxN2-4AdbTdHphur7V8-DWZESbtXjkNsXcGKNH-XWnUtLKxnsAxmRxVTYcxQuyzGcLko3r5GkSrWXMTSAY2lGPg-983Z9rNdf3fc8uz6C9ED0e-8eKXPrudcJWG4GSuvtutRlhHFSThSJ5JzIvLvqqg6-GsOSO-_33b05cGGeAbRmprE9zeMLn2uS2M4aWPoeYDopZvhcSgLlDcmKJcTAkgzrr4WAJ8NUM5s8vNdMqO8iRRpx_JbjzvKK_adcVEMoY7sQqezjceA4SK_lGq3cmAu80x273k7t2L8plBP00j_zP6WbiFE5h3I4QAmKfW4jQ9o27W6ZLaW6JPPfOSINKzHTXaSyzAsB0v3gHumdy9SyplFB7mJQZRW88V6oRth-zzXR2luItLaY8vj-wDSx_dbYVE4RYg8VykUiYWgGDvv6FHbcUhuXlJv4-pA60NME_DWVHNJdvxvP8la0KE-iMhLp4k8nkX5UEOppmWnZQy_c0iRZd2H_Gm0qTRfww-27WJ7w-HznZ4SQCFEhzvM37pLdqYxOn-S_SX93bS00UyrdHrsUsHUbi9YedhwAnCZmM0IFUsvL5Z_Uc3ELsf4-6QFkaOTas3dSpKL8A6CpnDX9uAKWInjKN7458OwhIQ_hgISg"
+          },
+          {
+            "title": "美系外資預估，全新2026年到2028年營收年複合成長率可達.... 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESfwHrOzAV5metnlnU_GOVHtfgdsqE3o9HDSIHrhLvmWAPPw4GmNty-wLTp4lhISnUVIkhBaS-dpjtQ2W3qgG1ivL2qVKT_Pl4OZBWATTAq7UkRX9x2GRvFxQtMmZjgrPtf1cHeCpEk903mTxE5ph56WoIFry12OrPZcPLgXD-R2Q"
+          }
+        ],
+        "extractionStatus": "settled"
+      },
+      "aiOverviewStatus": "available",
+      "error": null
+    },
+    {
+      "engine": "google",
+      "category": "下行風險（潛在劣勢）",
+      "query": "請簡單說明： 整體產業板塊 全球市場 2026-2028 (overcapacity OR \"declining margin\" OR \"job cuts\" OR restructuring OR 產能過剩 OR 毛利率下滑 OR 裁員 OR 淘汰)",
+      "status": "success",
+      "results": [
+        {
+          "title": "气派科技：2026年度以简易程序向特定对象发行股票募集 ...",
+          "url": "https://www.google.com/goto?url=CAESmAEB6zswFUemdc6MhIlx5tJGx16dvoEzS0cftLb29_M6Xgq51SfT-NOHHDP4n9S4EkyqTgHKo8badt3W62xzlr56CuTzLDIoE4DY5d0eJfrIxeDsz3ytG-YlpC23iQ4-UKJUVheVAgs1-wkjcBWSGJ9uuxPQ0RjhVa6mny_vWd76q0fPIwE1nlE34a8aU1VlxxjNg-QFMNtVmg"
+        },
+        {
+          "title": "J.P. Morgan 深度解析：2026-2028 供需失衡的超級週期，AI",
+          "url": "https://www.google.com/goto?url=CAES5QEB6zswFVQo2Z_wetKBGqUifxYWIpo6fvN_to7iQvAXVsdCqrV2M27RoeRh55TOjLfclL6dBuYwXGEanGvTBYcog5RmTSEJg73IfeNFgunSQooK1RfI0nV5JYUtAwo1IGV3erlaP-m9Wm_VCeysAU6GoOXhGIuw2Ax4xTfqFodJ3bi9hZ1aMZxRCi1v-Ah_Taln_vIP0WeTiMgc5xkXP7bgKNXcEXiCeE0KnyheboZ9UmcH2Jy_KXHPCkPus4JqnVw-ReZ6ULmfEtb9PChC2B5PJeBEZhHuDHHRT6Tp5GhVR6OqIA9-"
+        },
+        {
+          "title": "华泰联合证券有限责任公司关于中化国际（控股）股份 ...",
+          "url": "https://www.google.com/goto?url=CAESswEB6zswFcEIU2bQWGxRd3381Px1i4g9kuIj8tZNaeE2sFh846LonZRXjPCdemhLAPpBaYB_CR3PIUWHQExuieyddSoMXdBUkuSK1PwPRW7wUNB_WfGoDyuezvrhd4I3aQHiXbtcaCSPK4GOEQRpbAsvVFVNTvOGw56XAhTf8nk6TIEgywy5EmHI-JFUolIR-O8QDjFF_mWvxsexXMbaxH9zPJj0F5GN7AVLwX-BjXrJ3WwvqA"
+        },
+        {
+          "title": "烟台九目化学股份有限公司关于烟台九目化学股份 ... - 北京证券交易所",
+          "url": "https://www.google.com/goto?url=CAESgwEB6zswFdRdG8qO3MTAK5v3lpWe-_PjwbjKax4sqN9E3knTpzQF5HHyX_LhEc7OTlTXJZr7SjiiT5LxFGtwCLU4TRL7aUVarc0rt9E40S8qm1cjMGa6cjAeloWhnGfuSzj0zqr83arY91dspGecFcxHGrSUaYZ2G2FWg6P-UJDFgtihHQ"
+        },
+        {
+          "title": "濱化集團股份有限公司",
+          "url": "https://www.google.com/goto?url=CAEShwEB6zswFZlH1XcbRYx11jHL5QLynwomLNuHX8UTSZ2lmrOc6ffhoJajWjQ05wr1GFXsio_igBzrVqME0mYA4lYNE0kszIE1WZ1aKQk7OmxXe6CB1iLJqN-5imwq1_v7bfRvyJmXxDM7K1suPUkptxPl_dWYrRbu-aimrEmhjviUCqA3MydPGyY"
+        }
+      ],
+      "aiOverview": {
+        "text": "在 2026 至 2028 年 的全球市場中，整體產業板塊正迎來一場「結構性大洗牌」與「人力換血潮」。雖然全球整體經濟保持溫和成長（預期年增率約在 2.5% 至 3.3% 之間浮動），但內部板塊卻面臨嚴重的資本支出分歧與淘汰轉型壓力。\n以下為您簡單梳理 2026–2028 年全球四大關鍵產業板塊的現況與核心困境：\n1. 科技與晶片產業：獲利創新高，卻引爆歷史級「AI換血裁員潮」\n關鍵現況： 科技巨頭（如微軟、Google、Meta、亞馬遜等）的營收與獲利雖然持續成長，但裁員人數卻逆勢攀升，逼近歷史高點。\n背後原因： 企業並非因營運不佳而「節流」，而是主動進行「結構性重組」。生成式 AI 與代理型 AI（Agentic AI）在 2026 年已能成熟取代傳統的行政、初級程式碼編寫與純管理職務，促使企業一邊淘汰傳統白領，一邊將重金轉向招聘 AI 原生人才（即「邊裁邊招」）。\n供需亮點： AI 基礎建設的資本支出到 2028 年依然瘋狂擴張，高階晶片（如台積電先進製程）與高階 PCB（印刷電路板）供應鏈的產能呈現瘋狂短缺；但部分傳統非 AI 元件（如中低階 MLCC 晶片）到 2028 年則可能出現局部產能過剩的隱憂。\n2. 汽車與傳統製造業：電動車海嘯導致「產能過剩與毛利率下滑」\n關鍵現況： 屬於全球市場中受創最深的「投資不足者」。\n背後原因： 中國電動車產能向全球市場大舉輸出，加上高利率環境與歐美市場補貼退坡，導致全球傳統車企與中低階電動車面臨嚴重的產能過剩與流血價格戰。\n市場結果： 包含福斯（大眾）等歐洲汽車巨頭在內的供應鏈，正被迫面臨毛利率嚴重下滑、關廠、裁員與大規模重組。\n3. 石化、化工與重工業：法規與環保逼迫「加速淘汰與轉型」\n關鍵現況： 綠色電力轉型與地緣政治衝擊（如中東局勢引發的能源價格波動）雙重夾擊。\n背後原因： 全球針對碳足跡與高耗能、高排放產業的管制進入落實期（例如中國《產業結構調整指導目錄》與歐洲碳關稅）。\n市場結果： 傳統氯鹼、部分石化等落後工藝設備在 2025 至 2026 年底前迎來清退死線，高能耗產能在 2026-2028 年間被強制加速淘汰，迫使業者將資金用於清潔生產轉型，進而短期內壓縮了淨利潤。\n4. 金融、物流與傳統零售業：自動化導致的「入門職缺消亡」\n關鍵現況： 券商、投行、保險核保以及零售業的初級白領/藍領職位大量縮減。\n背後原因： AI 智能助理與自動化物流系統的大規模部署，讓核保審查、文字客服、初級數據分析等工作時間縮短 60% 以上。\n市場結果： 企業預期性減少招聘，基層崗位面臨重組，員工被要求必須迅速提升與 AI 協作的技能以防被淘汰。\n總結來說，2026-2028 年的全球市場特徵不是全面的經濟蕭條，而是「極端的數位與能源轉型痛期」。資金與職缺高度向 AI、先進半導體與公用綠能集中，而無法融入 AI 的傳統白領職能、以及面臨中國產能競爭的傳統製造業（如汽車），則深陷毛利率下滑、裁員與重組的泥淖。\n如果您希望深入了解特定板塊，請問您接下來想看哪部分的分析？\n具體哪幾家全球科技巨頭正在進行最大規模的人力重組？\n汽車產業在 2026-2028 的供應鏈破產風險評估？\n您的個人專業領域是否屬於被 AI強烈衝擊的「高風險淘汰區」？",
+        "sources": [
+          {
+            "title": "Yahoo 財經 (+4) - 近12.2萬人遭裁！2026全球科技業裁員逼近歷史高點。相關結果",
+            "url": "https://www.google.com/goto?url=CAES2AIB6zswFdmqT80VTzOG3-IFoQ4urtVrUidn9o9_kwosMUEyKosD16XWMRsUyDodUJaDcKNcuvTXuWZ7z8Xkayqh7rCJa8xK7MCxRO6U3ukxWnqpnNZfN7wt8aKEAT3c931HzPgWIqEN35sOWVZDUI5hnzK9gOytzvt6gzf01eqfiIAGm1P3QVcXARGjJKYa65A9bPbBB6LBI89L14H6S7jjTIDV0hhd1YJfre2_UdrUNoH1b_eV1FdDrT4k2d--052WZfvS7fqTnGh1LSdVqpaIuItNUnLZ2eG2ojGlsqgC-9YlaPYT05Z2g78pKsJvgKhRnsXA9l2L_0smO9tW_KBdL8Zsz8BgNQvNyzTDm6gv41sbagdYbzJ9nAL2KwfBzU1eK61d4rymgW068qYRrUdhS9ScV8skXEKjbnhPTDy9SNvle5C7DYKSKWUgpMc8fKYm_Sn7wqI5kA"
+          },
+          {
+            "title": "非凡新聞台 (+3) - AI重塑科技業人才版圖！2026全球裁員近12.2萬人全 ... - 非凡新聞。相關結果",
+            "url": "https://www.google.com/goto?url=CAESawHrOzAV1XqiKZL8JmIBapjcz0fOvdsdYBfm13JIilz15Js9q4d4WiLPVz0kLg4Idm1-ypQx3y4XhA8VWj9RhdZqt45eDXi_z6knZ1U91mVgVIB0p70ytiflBSvO-v3Ubboacvu9goflU1_-"
+          },
+          {
+            "title": "www.pressplay.cc (+2) - J.P. Morgan 深度解析：2026-2028 供需失衡的超級週期，AI。相關結果",
+            "url": "https://www.google.com/goto?url=CAESowEB6zswFY7swUYxqN-V8VfTe14kdh7AmG5qeXUmQX6eTtvcandxYLXx0Dxoi_qC-nngOm1oTaHiBXStvJznMiq5lhUD3GI397Nvz0rwM1cY5ot6KpObjdI7xi-X_SImhUkhF4mi96zNT2lEPjKB7ZQI3qi0-MyKMx6TriWRiskcwcP-RR67-XOAiusITZvbBr2OutJjS3Xh3NNBFfvifg3HWdgm"
+          },
+          {
+            "title": "Allianz Trade (+2) - Industry key themes 2026: Industry will grow if you know where to look。相關結果",
+            "url": "https://www.google.com/goto?url=CAESsAEB6zswFRHqNGBNP9UY6VHEtqqgwNLhFQyMDEqL5XZvlVCaL6HvrnartCbCQ-O9JnppYBySehpZO89l916D3GbeQ5Eh6DBgoCjqqWqoOvj_pn8yQTONW8RrN98WIqPlqFKGAwIzlDg8rBJea6lpgc17vs8JW7qXUJE1yqpulVHbZD6qLnXuf6TN7RNMgXvepfp5gaGPcJRdWru748K0Pk7CX9KoKsZT7dMA6l9Rm4e5Hg"
+          },
+          {
+            "title": "HKEXnews (+4) - 濱化集團股份有限公司 - HKEXnews。相關結果",
+            "url": "https://www.google.com/goto?url=CAEShwEB6zswFSg_IEyMlGDNq-6Ucow1UVUHjsr4oulbBWhqGHLkrTyQTW_FbansJxFj3E-Pp-eg35gVC8JIwGfKYk3ODjkE0e-jiIbm3FZqR3y83xnEVBFMG_Kb8n3wy8QwyN-cGzlaZ6qIL1eQnOFQe05IeN2z42cRV6IDWNQZKabKcYi2oZTY2Ys"
+          },
+          {
+            "title": "unwire PRO (+2) - 科技業迎來史上最大裁員潮：AI 驅動24.5 萬人失業背後的產業 ...。相關結果",
+            "url": "https://www.google.com/goto?url=CAEShQEB6zswFRkePj7pvWwtiwxqYzNVrYFqxB4HP9j055Psq8jXpShIpGWAgCTqJoMzRLDGdUB0EFJZZe1nocwYW3OuBjd6BERnp7Zb8mlq5OgGJPLV1D9lmwvLky2pPIBo9X2lMguAgRpAclOgBOvO2f3zzmLs-3J9ZXMW1FJ29bNXNkmWtfsW"
+          },
+          {
+            "title": "數位時代 (+4) - 圖解2026裁員潮：全美年減50%、科技業卻逆勢增33%！AI讓白領主管職也難逃？|數位時代 BusinessNext。相關結果",
+            "url": "https://www.google.com/goto?url=CAESjgEB6zswFTnoT7QPd6J13HPgVG3YvmjHo-U3jsbjIkhfTxiSBK_fCm_3kEhW8t3ecdhcYZJjLv3ylhDwIkNE3fyzeqxfmAO5d_dCnXiP2rl3yZepWq6cLXp6RMWcDrVlJxukONezuhMFB3QRZtLMphQkexx3jQS-7gJDpL3hTEMPgMfvM1vdpvevOfgV6PtT"
+          },
+          {
+            "title": "J.P. Morgan 深度解析：2026-2028 供需失衡的超級週期，AI. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAES5QEB6zswFTVHAyhdMubM16mVpZ2Qkcwo4OpKC0W51saAphdjVveEMHeKzlBO-3Z5lrsbb0hqdqg8CZb1x3ztKqj0-RZkKlrOjgjAz6St0eySF25viBkOYvVma49cDDKvd4qqkFthUTG4o3mMPXiRzInmfhF3bJLs93vPCp15z4gLEBeHrqjfwyqZdyCN2wQm-7o3Za2_re3Szpj4RtjABkcVq1MIpa71i-vnJI1F3A-yebea8mNdSvdy6-ICpdUhd_UVg7IUuWcch9jTV8fpal7E_eXQJZ2ggJCcKmjYOiBiBDMVSx7q"
+          },
+          {
+            "title": "氯碱化工龙头全面转型升级，“北鲲计划”开启新征程. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESgQEB6zswFWScO8B2xQ9zJhkoEuaCXnESNZCmzFFdSxnEdYGHxEOF1tpG7uALQXYa9GLzJfbaSBbgTj7yQ9EfohdXM8jnsgr41ORFxagq_cJpob0CfnrkSale-_KpX9IEa2DF-KmpX1KofTxgnj_YKALMZ7Vq-Wbxh6wE6HBYUYybfBE"
+          },
+          {
+            "title": "台积电法说会实录：今年资本支出加码至640亿美元高端芯片 .... 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESWQHrOzAVUQqcLqDJQmNgwuojN66QOkqdbQ08inQ214yArKSVE98kHIBdC1qT3sYDtoKDuHjh6Zbc-PFnpj6HMm2_-3SEuUKEEItoC90OyVkTZGcy6yexgSHg"
+          },
+          {
+            "title": "气派科技：2026年度以简易程序向特定对象发行股票募集 ... - 新浪. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESmAEB6zswFR6D2hmcsCdYLO4DRYfoJDeCsF9Es24u6FCK2I-PWQKohOX-0WWYGDZ2q4u0DMMpJ_xzWBctkxIeHGzh1Z5f-ydF5gqN3j5J2bJEMTE5C0rPBxLfteYAEA2ec1YOO9WM0n1D7nwjVlM-q32aBjg5tWAp0ybu_vzkJ4sRqxJ1_ejovAwuYEMYrp-VB7QW8XTU2qqfog"
+          },
+          {
+            "title": "即時新聞｜摩根大通認股證牛熊證. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESiAEB6zswFV9buwdvmdpgc96aiAVcUzdGdm_QoFOD22yy1c2WmchT2OtjcT4mphQroqeS84fAQPhMnExH43SimzZv6OQY-qRnzYzedCk5rgN8lpYf4y9v97vASMl3zWvk2Yhp0xxTVZzZvt7Rmvku5hk6z4awL6bTzZCj4uE_cjfxsLbaG3KmQ9eR"
+          },
+          {
+            "title": "2026 科技業裁員潮真相：為何企業一邊砍人一邊重金招聘？ AI .... 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESYQHrOzAVGkS_m5euwZ3mV-lVTQ-DSXfRN8ORLb_ioKmlgnG0nyR9QUI9oH23xElWnSGJrNZ9qTkS906BWLhNe-PCB-XsNmWpM3nVvVgZocsm5FhFMAj8GkYCNi1Xug1xtVY"
+          },
+          {
+            "title": "【下班經濟學】產能狂缺到2028！AI下半場黑馬是他 - 風傳媒. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESXQHrOzAVzO7LSR_bQ73pZNZVnyjsBWDLsY406BV4uzpE89XU-xB2Fj_Rb960nrtx36G9FkU-nDDclTcT5icXwtucgnxIfCdUuS8jD2DxOWr6P9y7CXiwvAMUUAQIpg"
+          },
+          {
+            "title": "科技革命變裁員風暴？高盛：AI或令2026年失業率再升- 職趣事. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESogIB6zswFXhtlQ8WFOUYfplrbLals29_NugWXg2oLEaHWuUDEw_lsoP3_D1B5FTAd0B_ToXaoP8P1_VAe-VeG8-llq8z8Jx_BMgR-AZILGgJHZEVLnBHK26tCOplg0X7BxaMrSly50jsVuxPAZP6BadFs0zYIJKhaxwWzJ0zEUJf6zko9lusEkg0w56jmGOl5kIuR1DPqEsqYPe9Me5ltv3kFl_GObNJYw7skd4mN9z-RXhEZMv7NKokXX1HXW_dGCNEeZkpRks_WPJBmXO_0xm97TwR8EnnolIlh-MK2ceXo0miojvaLXEKhk9EsGnsjRWEOMbmTvgDmAwRxt_f8HL_-0MU0_9FUQK8w76DY9TbJC010ihXt-8VXTjCoNUvcfkZnQ"
+          },
+          {
+            "title": "Global Economic Outlook 2026: New Engines of Growth in a .... 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESsAEB6zswFfEoa4OKydAzv_uPbfH6srJMX4PQrrT7XoIpzPYHAc_2wQtZUfLGfXWBOkJrZufiLSsvbSZHNnjylmray8S0PvcibC4OJGn6Xk5FJT-lYuB5jlbgoiMNlAoaZWkxH5m_NaFm-88Hi3PFg5ae7a0cbCv6WbULBt5St_qwlKWZ0wczMNGrM6i55Cl9aUh9YpyeIafASGJJE692jiIyxngUvcsG540ekrJQqqfycQ"
+          },
+          {
+            "title": "2026 Labor Markets at a Crossroads. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESfgHrOzAVm8VwhhuGGlCKRoK8P_Ows7_plUuV69NWm1Pvs3QEP_w5moHQRNK42RHpFEJYkT7GNc1iG9Egt9ul4vzwtwoWewTygaaK3oomqyNrrhfRbm1Uh43d6dIeWsdIh6RkWOMgvhOwPAfBqat49N27jCi0ZUDcVbpeMGAnFw"
+          },
+          {
+            "title": "Industry key themes 2026: Industry will grow if you know where to look. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESpwEB6zswFU6p-QVvWBpIxEmu-x1iXHAuczN9nsLr0d3i54crKkzs1LM6w2f8u_REjwvYbvhzp3Y2UkoPwibXB04Bgev8HiC9ed4XIpDAioufK-FMHR42KedVs8bwwVUqLJ7AV_2q4QqOiPe1khzcYwa4hIZ4ueKsn9rRYC9CVFccKp7hIr8lBE2VSRhBArqq-frnEvp7MlLojMWaJeJ1GbZkLxen9YPFPw"
+          },
+          {
+            "title": "Half-Time Outlook 2026-27: AI holds the score, growth slows to +2.5%. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESpAEB6zswFeIj99zwHyhViIJWuTs-9UbneDsq5eUX9kNWAXXLEUeqAQtV1vy_K0HUyfnMPIWnBaxfpbEIV9ZC4Q6nqnYhfCjNkFtWx3BGH0gcvp5bt6s3IWjBFkUdlutDat-EcpjCYVsdX8numfOG3kiMFTubhyWEeie08NB8rAmVyhES6rxptdXhMxostfmKkVTbttHyBl_npot6J2GfjZ-ec6GktQ"
+          },
+          {
+            "title": "Global economic outlook 2026 report | McKinsey. 喺新分頁度打開。",
+            "url": "https://www.google.com/goto?url=CAESpQEB6zswFY8IQPjVpY6GtYvHLTMGlYgELbg8D0ZGAYqAUiN4qT8eUarWRBAeMxyK_TOKmJPRKBoYG6USkfOVKMHCUz-R9guxUnFgd_FljDE_oRYIm3g6IGLFkOXd7RQAt07bVjTGREvgKgTZGQdGuEDruCYN55MF74PPHubZPd6Sq7tjkKyS42G2DoJrpbp0uihAj56XsaePm--C3aqf3qHeywyuyiI"
+          }
+        ],
+        "extractionStatus": "settled"
+      },
+      "aiOverviewStatus": "available",
+      "error": null
+    }
+  ],
+  "errors": []
+}

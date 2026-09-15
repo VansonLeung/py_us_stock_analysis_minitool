@@ -1,0 +1,3 @@
+[submodule "vendor/playwright-altered"]
+	path = vendor/playwright-altered
+	url = git@github.com:VansonLeung/playwright-altered.git

@@ -1,10 +1,16 @@
 import argparse
 import datetime as dt
 import html
+import json
+import mimetypes
+import os
+import subprocess
 import sys
 import time
+from decimal import Decimal, ROUND_HALF_UP
 from pathlib import Path
 from typing import Optional
+from zoneinfo import ZoneInfo
 
 import pandas as pd
 import requests
@@ -17,6 +23,8 @@ BLACKLIST_FILE_NAME = "blacklisted_symbols.txt"
 FOCUS_FILE_NAME = "focus_symbols.txt"
 TELEGRAM_MSG_MAX_CHARS = 3500
 SECTION_ROWS_PER_BLOCK = 20
+FEAR_GREED_RUNTIME_DIR = "fear_greed_runtime"
+FINANCIAL_FORECAST_RUNTIME_DIR = "financial_forecast_runtime"
 
 
 def _dated_output_paths(history_dir: Path, day: dt.date) -> tuple[Path, Path]:
@@ -179,6 +187,7 @@ def _build_message(
     history_dir: Path,
     fallback_metadata: Optional[dict[str, scanner.StockMetadata]] = None,
     eligible_score_symbols: Optional[set[str]] = None,
+    message_mode: str = "full",
 ) -> str:
     if full_scan_frame.empty or "symbol" not in full_scan_frame.columns:
         return (
@@ -368,11 +377,6 @@ def _build_message(
 
         return blocks
 
-    sections: list[str] = []
-    sections.extend(_render_section_blocks("Focused symbols (always shown)", _rows_from(focus_frame), show_days=False, show_ema=False))
-    sections.extend(_render_section_blocks("Newly achieved score >= 4", _rows_from(newly_frame), show_days=False, show_ema=True))
-    sections.extend(_render_section_blocks("Existing score >= 4", _rows_from(existing_frame), show_days=True, show_ema=True))
-    sections.extend(_render_section_blocks("Dropped below 4 (was >= 4 previously)", _rows_from(dropped_frame), show_days=False, show_ema=False))
     focus_count = 0 if focus_frame.empty else int(focus_frame["symbol"].nunique())
     new_count = 0 if newly_frame.empty else int(newly_frame["symbol"].nunique())
     existing_count = 0 if existing_frame.empty else int(existing_frame["symbol"].nunique())
@@ -381,6 +385,21 @@ def _build_message(
         f"<b>Summary:</b> "
         f"Focus {focus_count} | New {new_count} | Existing {existing_count} | Dropped {dropped_count}"
     )
+
+    sections: list[str] = []
+    sections.extend(_render_section_blocks("Focused symbols (always shown)", _rows_from(focus_frame), show_days=False, show_ema=False))
+    if message_mode == "compact":
+        compact_lines = [
+            f"newly_ge_4   {new_count}",
+            f"existing_ge_4 {existing_count}",
+            f"dropped_lt_4 {dropped_count}",
+        ]
+        sections.append(f"<b>Compact score summary</b>\n<pre>{html.escape(chr(10).join(compact_lines))}</pre>")
+    else:
+        sections.extend(_render_section_blocks("Newly achieved score >= 4", _rows_from(newly_frame), show_days=False, show_ema=True))
+        sections.extend(_render_section_blocks("Existing score >= 4", _rows_from(existing_frame), show_days=True, show_ema=True))
+        sections.extend(_render_section_blocks("Dropped below 4 (was >= 4 previously)", _rows_from(dropped_frame), show_days=False, show_ema=False))
+
     return f"<b>{today.isoformat()} VCP watchlist</b>\n{summary}\n\n" + "\n\n".join(sections)
 
 
@@ -411,29 +430,329 @@ def _split_message_chunks(message: str, max_chars: int = TELEGRAM_MSG_MAX_CHARS)
     return chunks
 
 
-def _post_webhook(message: str, timeout: int = 20) -> None:
-    chunks = _split_message_chunks(message)
-    for idx, chunk in enumerate(chunks, start=1):
-        payload = {"msg": chunk}
-        response = requests.post(WEBHOOK_URL, json=payload, timeout=timeout)
-        try:
-            response.raise_for_status()
-        except requests.HTTPError as exc:
-            body = response.text[:500] if response.text else ""
-            raise requests.HTTPError(f"Webhook chunk {idx}/{len(chunks)} failed: {exc}. Response: {body}") from exc
+def _post_webhook_message(message: str, timeout: int = 20) -> None:
+    payload = {"msg": message}
+    response = requests.post(WEBHOOK_URL, json=payload, timeout=timeout)
+    try:
+        response.raise_for_status()
+    except requests.HTTPError as exc:
+        body = response.text[:500] if response.text else ""
+        raise requests.HTTPError(f"Webhook message failed: {exc}. Response: {body}") from exc
+
+
+def _post_webhook_messages(messages: list[str], timeout: int = 20, split_messages: bool = True) -> None:
+    for message in messages:
+        if not message:
+            continue
+        chunks = _split_message_chunks(message) if split_messages else [message]
+        for chunk in chunks:
+            _post_webhook_message(chunk, timeout=timeout)
 
 
 def _post_file(file_path: Path, timeout: int = 40) -> None:
     with file_path.open("rb") as fh:
+        mime_type = mimetypes.guess_type(file_path.name)[0] or "application/octet-stream"
         files = {
             "files": (
                 file_path.name,
                 fh,
-                "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                mime_type,
             )
         }
         response = requests.post(WEBHOOK_URL, files=files, timeout=timeout)
         response.raise_for_status()
+
+
+def _format_half_up_1dp(value: object) -> str:
+    try:
+        return str(Decimal(str(value)).quantize(Decimal("0.1"), rounding=ROUND_HALF_UP))
+    except Exception:
+        return "n/a"
+
+
+def _parse_utc_datetime(value: object) -> Optional[dt.datetime]:
+    if value is None:
+        return None
+    text = str(value).strip()
+    if not text:
+        return None
+    try:
+        return dt.datetime.fromisoformat(text.replace("Z", "+00:00"))
+    except ValueError:
+        return None
+
+
+def _format_issue_lines(issues: object) -> list[str]:
+    if not isinstance(issues, list):
+        return []
+
+    lines: list[str] = []
+    for item in issues:
+        if isinstance(item, dict):
+            message = str(item.get("message") or item.get("code") or "").strip()
+            source = str(item.get("source") or "").strip()
+            if message and source:
+                lines.append(f"{source}: {message}")
+            elif message:
+                lines.append(message)
+        else:
+            text = str(item).strip()
+            if text:
+                lines.append(text)
+    return lines
+
+
+def _truncate_html_block(title: str, body: str, max_chars: int = TELEGRAM_MSG_MAX_CHARS) -> str:
+    prefix = f"<b>{html.escape(title)}</b>\n<pre>"
+    suffix = "</pre>"
+    normalized = body.strip()
+    candidate = f"{prefix}{html.escape(normalized)}{suffix}"
+    if len(candidate) <= max_chars:
+        return candidate
+
+    truncated_marker = "\n...\n[truncated]"
+    low = 0
+    high = len(normalized)
+    best = f"{prefix}{html.escape('[truncated]')}{suffix}"
+    while low <= high:
+        mid = (low + high) // 2
+        trial_text = normalized[:mid].rstrip() + truncated_marker
+        trial = f"{prefix}{html.escape(trial_text)}{suffix}"
+        if len(trial) <= max_chars:
+            best = trial
+            low = mid + 1
+        else:
+            high = mid - 1
+    return best
+
+
+def _extract_report_error(report: dict) -> str:
+    errors = report.get("errors") if isinstance(report, dict) else []
+    if isinstance(errors, list):
+        for item in errors:
+            if not isinstance(item, dict):
+                continue
+            code = str(item.get("code") or "").strip()
+            message = str(item.get("message") or "").strip()
+            if code and message:
+                return f"{code}: {message}"
+            if message:
+                return message
+
+    searches = report.get("searches") if isinstance(report, dict) else []
+    if isinstance(searches, list):
+        for entry in searches:
+            if not isinstance(entry, dict):
+                continue
+            error = entry.get("error")
+            if not isinstance(error, dict):
+                continue
+            code = str(error.get("code") or "").strip()
+            message = str(error.get("message") or "").strip()
+            if code and message:
+                return f"{code}: {message}"
+            if message:
+                return message
+
+    return "no AI overview available"
+
+
+def _build_fear_greed_message(report: dict) -> str:
+    report_date = str(report.get("report_date") or dt.date.today().isoformat())
+    observation = report.get("observation") if isinstance(report, dict) else None
+    if not isinstance(observation, dict) or not observation:
+        lines = [
+            f"report date  {report_date}",
+            "status       index unavailable",
+            f"freshness    {report.get('freshness', 'unknown')}",
+            f"fetch        {report.get('fetch_status', 'unknown')}",
+            f"cached       {'yes' if report.get('is_cached') else 'no'}",
+        ]
+    else:
+        observed_at_utc = _parse_utc_datetime(observation.get("observed_at"))
+        observed_at_hkt = observed_at_utc.astimezone(ZoneInfo("Asia/Hong_Kong")) if observed_at_utc is not None else None
+        category = str(observation.get("category") or "unknown").replace("_", " ").title()
+        lines = [
+            f"report date  {report_date}",
+            f"score        {_format_half_up_1dp(observation.get('score'))}/100",
+            f"category     {category}",
+            f"market date  {observation.get('market_date') or 'n/a'}",
+            f"observed HKT {observed_at_hkt.strftime('%Y-%m-%d %H:%M:%S') if observed_at_hkt is not None else 'n/a'}",
+            f"change pts   {_format_half_up_1dp(report.get('change_points'))}",
+            f"freshness    {report.get('freshness', 'unknown')}",
+            f"fetch        {report.get('fetch_status', 'unknown')}",
+            f"cached       {'yes' if report.get('is_cached') else 'no'}",
+            f"new obs      {'yes' if report.get('is_new_observation') else 'no'}",
+        ]
+        if report.get("entry_event") and report.get("freshness") == "current" and report.get("is_new_observation"):
+            lines.append("extreme event new entry")
+
+    data_issue_lines = _format_issue_lines(report.get("quality_issues"))
+    chart_issue_lines = _format_issue_lines(report.get("chart_issues"))
+    artifacts = report.get("artifacts") if isinstance(report, dict) else []
+    if not isinstance(artifacts, list):
+        artifacts = []
+    chart_kinds = [str(item.get("kind")).strip() for item in artifacts if isinstance(item, dict) and item.get("kind")]
+    if chart_kinds:
+        lines.append(f"charts       {', '.join(chart_kinds)}")
+    if data_issue_lines:
+        lines.append("")
+        lines.append("data issues")
+        lines.extend(data_issue_lines)
+    if chart_issue_lines:
+        lines.append("")
+        lines.append("chart issues")
+        lines.extend(chart_issue_lines)
+
+    escaped = html.escape("\n".join(lines))
+    return f"<b>Fear &amp; Greed</b>\n<pre>{escaped}</pre>"
+
+
+def _prepare_fear_greed_notification(
+    base_dir: Path,
+    charts_mode: str,
+    timeout_seconds: int,
+    attempts: int,
+) -> tuple[str, list[Path]]:
+    try:
+        from fear_greed import Config, prepare_report
+    except ImportError as exc:
+        raise RuntimeError(
+            "Fear & Greed support requires the cnn-fear-greed-daily package in this venv."
+        ) from exc
+
+    runtime_dir = (base_dir / FEAR_GREED_RUNTIME_DIR).resolve()
+    runtime_dir.mkdir(parents=True, exist_ok=True)
+    config = Config(
+        database=runtime_dir / "state.sqlite3",
+        timeout_seconds=timeout_seconds,
+        attempts=attempts,
+    )
+    report = prepare_report(config)
+
+    artifacts: list[Path] = []
+    if charts_mode != "off":
+        from fear_greed.charts.service import attach_charts
+
+        report = attach_charts(
+            report,
+            config,
+            output_dir=runtime_dir / "charts",
+            mode=charts_mode,
+        )
+        artifacts_data = report.get("artifacts", [])
+        if not isinstance(artifacts_data, list):
+            artifacts_data = []
+        for item in artifacts_data:
+            if not isinstance(item, dict):
+                continue
+            path_value = item.get("path")
+            if not path_value:
+                continue
+            artifact_path = Path(str(path_value))
+            if artifact_path.exists():
+                artifacts.append(artifact_path)
+
+    return _build_fear_greed_message(report), artifacts
+
+
+def _run_financial_forecast_cli(
+    base_dir: Path,
+    timeout_seconds: int,
+    cli_timeout_ms: int,
+) -> dict:
+    runtime_dir = (base_dir / FINANCIAL_FORECAST_RUNTIME_DIR).resolve()
+    runtime_dir.mkdir(parents=True, exist_ok=True)
+    report_path = runtime_dir / "latest-report.json"
+    stderr_path = runtime_dir / "latest-stderr.log"
+
+    cli_override = os.environ.get("FINANCIAL_FORECAST_CLI", "").strip()
+    if cli_override:
+        command = [cli_override]
+    else:
+        command = [
+            "npx",
+            "--prefix",
+            str((base_dir / "vendor/playwright-altered").resolve()),
+            "financial_sector_forecast_fetch",
+        ]
+    command.extend(["--format", "json", "--headed", "--timeout", str(cli_timeout_ms)])
+
+    try:
+        completed = subprocess.run(
+            command,
+            capture_output=True,
+            text=True,
+            encoding="utf-8",
+            timeout=timeout_seconds,
+            check=False,
+            cwd=str(base_dir),
+        )
+    except (OSError, subprocess.TimeoutExpired) as error:
+        stderr_path.write_text(str(error), encoding="utf-8")
+        return {
+            "schemaVersion": 1,
+            "status": "failed",
+            "searches": [],
+            "errors": [{"code": "CLI_UNAVAILABLE", "message": str(error)}],
+        }
+
+    stderr_path.write_text(completed.stderr or "", encoding="utf-8")
+    try:
+        report = json.loads(completed.stdout)
+    except json.JSONDecodeError:
+        return {
+            "schemaVersion": 1,
+            "status": "failed",
+            "searches": [],
+            "errors": [
+                {
+                    "code": "INVALID_OUTPUT",
+                    "message": completed.stderr.strip() or "CLI returned no valid JSON",
+                }
+            ],
+        }
+
+    report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    return report
+
+
+def _prepare_financial_forecast_notifications(
+    today: dt.date,
+    base_dir: Path,
+    timeout_seconds: int,
+    cli_timeout_ms: int,
+) -> list[str]:
+    report = _run_financial_forecast_cli(
+        base_dir=base_dir,
+        timeout_seconds=timeout_seconds,
+        cli_timeout_ms=cli_timeout_ms,
+    )
+
+    overview_messages: list[str] = []
+    searches = report.get("searches") if isinstance(report, dict) else []
+    if isinstance(searches, list):
+        for entry in searches:
+            if not isinstance(entry, dict):
+                continue
+            if entry.get("status") != "success" or entry.get("aiOverviewStatus") != "available":
+                continue
+            overview = entry.get("aiOverview")
+            if not isinstance(overview, dict):
+                continue
+            text = str(overview.get("text") or "").strip()
+            if not text:
+                continue
+            category = str(entry.get("category") or "Financial forecast").strip()
+            overview_messages.append(_truncate_html_block(f"Forecast AI Overview: {category}", text))
+
+    if overview_messages:
+        return overview_messages
+
+    status = str(report.get("status") or "failed").strip()
+    error_text = _extract_report_error(report)
+    message = html.escape(f"Financial forecast AI Overview unavailable on {today.isoformat()}: {status} - {error_text}")
+    return [f"<b>{message}</b>"]
 
 
 def run_vcp_job(
@@ -455,6 +774,14 @@ def run_vcp_job(
     require_price_above_ema20: bool,
     require_price_above_ema60: bool,
     require_price_above_ema250: bool,
+    message_mode: str,
+    fear_greed_enabled: bool,
+    fear_greed_charts: str,
+    fear_greed_timeout: int,
+    fear_greed_attempts: int,
+    financial_forecast_enabled: bool,
+    financial_forecast_timeout: int,
+    financial_forecast_cli_timeout_ms: int,
 ) -> Path:
     today = dt.date.today()
     blacklist_path = base_dir / BLACKLIST_FILE_NAME
@@ -517,12 +844,52 @@ def run_vcp_job(
         missing_focus = sorted(focus_symbols - available_symbols)
     fallback_metadata = scanner.get_stock_metadata_map(missing_focus, str(metadata_cache_path), metadata_ttl_days) if missing_focus else {}
     eligible_score_symbols = set(score4plus_frame["symbol"].astype(str).str.upper()) if not score4plus_frame.empty and "symbol" in score4plus_frame.columns else set()
-    msg = _build_message(today, full_scan_frame, blacklisted_symbols, focus_symbols, history_dir, fallback_metadata, eligible_score_symbols)
-    _post_webhook(msg)
+    opening_message = f"<b>Here comes {today.isoformat()} financial analysis</b>"
+    closing_message = f"<b>That's the end of {today.isoformat()} financial analysis. Thank you.</b>"
+    msg = _build_message(
+        today,
+        full_scan_frame,
+        blacklisted_symbols,
+        focus_symbols,
+        history_dir,
+        fallback_metadata,
+        eligible_score_symbols,
+        message_mode=message_mode,
+    )
+    outbound_messages = [opening_message, msg]
+    fear_greed_artifacts: list[Path] = []
+    if fear_greed_enabled:
+        fear_greed_message, fear_greed_artifacts = _prepare_fear_greed_notification(
+            base_dir=base_dir,
+            charts_mode=fear_greed_charts,
+            timeout_seconds=fear_greed_timeout,
+            attempts=fear_greed_attempts,
+        )
+        outbound_messages.append(fear_greed_message)
+
+    financial_forecast_messages: list[str] = []
+    if financial_forecast_enabled:
+        financial_forecast_messages = _prepare_financial_forecast_notifications(
+            today=today,
+            base_dir=base_dir,
+            timeout_seconds=financial_forecast_timeout,
+            cli_timeout_ms=financial_forecast_cli_timeout_ms,
+        )
+
+    _post_webhook_messages(outbound_messages)
     print(f"[{dt.datetime.now().isoformat(timespec='seconds')}] Sent HTML stock list message.")
+
+    for artifact_path in fear_greed_artifacts:
+        _post_file(artifact_path)
+        print(f"[{dt.datetime.now().isoformat(timespec='seconds')}] Sent Fear & Greed artifact: {artifact_path.name}")
 
     _post_file(score4plus_xlsx_path)
     print(f"[{dt.datetime.now().isoformat(timespec='seconds')}] Sent filtered XLSX file.")
+    if financial_forecast_messages:
+        _post_webhook_messages(financial_forecast_messages, split_messages=False)
+        print(f"[{dt.datetime.now().isoformat(timespec='seconds')}] Sent financial forecast messages.")
+    _post_webhook_messages([closing_message], split_messages=False)
+    print(f"[{dt.datetime.now().isoformat(timespec='seconds')}] Sent analysis ending message.")
     return csv_path
 
 
@@ -587,10 +954,56 @@ def parse_args(argv=None):
         help="Keep score>=4 filtered exports only when price is above EMA250.",
     )
     parser.add_argument(
+        "--message-mode",
+        choices=["full", "compact"],
+        default="full",
+        help="Telegram message layout: full lists or compact counts for new/existing/dropped score groups.",
+    )
+    parser.add_argument(
+        "--fear-greed-enable",
+        action="store_true",
+        help="Append a separate Fear & Greed text message after the VCP Telegram messages.",
+    )
+    parser.add_argument(
+        "--fear-greed-charts",
+        choices=["off", "daily", "weekly", "both", "auto"],
+        default="off",
+        help="When Fear & Greed is enabled, optionally generate and send chart images.",
+    )
+    parser.add_argument(
+        "--fear-greed-timeout",
+        type=int,
+        default=15,
+        help="Per-request timeout in seconds for Fear & Greed fetches.",
+    )
+    parser.add_argument(
+        "--fear-greed-attempts",
+        type=int,
+        default=3,
+        help="Number of fetch attempts for Fear & Greed data (1-5).",
+    )
+    parser.add_argument(
+        "--financial-forecast-enable",
+        action="store_true",
+        help="Append forecast AI Overview messages after the filtered XLSX file.",
+    )
+    parser.add_argument(
+        "--financial-forecast-timeout",
+        type=int,
+        default=380,
+        help="Outer subprocess timeout in seconds for the forecast CLI.",
+    )
+    parser.add_argument(
+        "--financial-forecast-cli-timeout-ms",
+        type=int,
+        default=360000,
+        help="Overall timeout passed through to the forecast CLI in milliseconds.",
+    )
+    parser.add_argument(
         "--metadata-scope",
         choices=["off", "filtered", "all"],
         default=scanner.DEFAULT_METADATA_SCOPE,
-        help="Metadata enrichment scope for dated scan exports.",
+        help="Metadata enrichment scope for dated scan exports: filtered means score>=4 rows plus focus symbols only; all means all non-fetch-error rows.",
     )
     parser.add_argument(
         "--metadata-cache",
@@ -625,6 +1038,14 @@ def main(argv=None):
         "require_price_above_ema20": args.require_price_above_ema20,
         "require_price_above_ema60": args.require_price_above_ema60,
         "require_price_above_ema250": args.require_price_above_ema250,
+        "message_mode": args.message_mode,
+        "fear_greed_enabled": args.fear_greed_enable,
+        "fear_greed_charts": args.fear_greed_charts,
+        "fear_greed_timeout": args.fear_greed_timeout,
+        "fear_greed_attempts": args.fear_greed_attempts,
+        "financial_forecast_enabled": args.financial_forecast_enable,
+        "financial_forecast_timeout": args.financial_forecast_timeout,
+        "financial_forecast_cli_timeout_ms": args.financial_forecast_cli_timeout_ms,
         "metadata_scope": args.metadata_scope,
         "metadata_cache_path": (Path(args.base_dir).resolve() / args.metadata_cache) if not Path(args.metadata_cache).is_absolute() else Path(args.metadata_cache),
         "metadata_ttl_days": args.metadata_ttl_days,

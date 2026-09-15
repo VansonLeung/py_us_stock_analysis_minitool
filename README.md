@@ -105,16 +105,51 @@ Scheduled run (every day at 6:00):
 venv/bin/python vcp_daily_job.py --mode schedule --schedule-hour 6 --schedule-minute 0 --base-dir .
 ```
 
+Compact Telegram mode with appended Fear & Greed text:
+
+```bash
+venv/bin/python vcp_daily_job.py \
+	--mode schedule \
+	--schedule-hour 6 \
+	--schedule-minute 0 \
+	--base-dir . \
+	--metadata-scope filtered \
+	--message-mode compact \
+	--fear-greed-enable
+```
+
+Add forecast AI Overview messages after the filtered XLSX attachment:
+
+```bash
+venv/bin/python vcp_daily_job.py \
+	--mode schedule \
+	--schedule-hour 8 \
+	--schedule-minute 15 \
+	--base-dir . \
+	--metadata-scope filtered \
+	--message-mode compact \
+	--fear-greed-enable \
+	--financial-forecast-enable
+```
+
 Useful daily-job filters:
 - `--require-price-above-ema20`: keep score>=4 filtered exports only when price is above EMA20.
 - `--require-price-above-ema60`: keep score>=4 filtered exports only when price is above EMA60.
 - `--require-price-above-ema250`: keep score>=4 filtered exports only when price is above EMA250.
+- `--message-mode compact`: keep focus-symbol details, but reduce new/existing/dropped score sections to counts only.
+- `--fear-greed-enable`: append a Fear & Greed text message after the VCP Telegram messages.
+- `--fear-greed-charts {daily,weekly,both,auto}`: when Fear & Greed is enabled, generate and send PNG charts if available.
+- `--financial-forecast-enable`: run `npx --prefix vendor/playwright-altered financial_sector_forecast_fetch --headed` and append one Telegram message per available AI Overview after the XLSX attachment.
+- `--metadata-scope all`: populate metadata for all non-fetch-error rows in the dated scan export. `filtered` only fills score>=4 rows plus focus symbols, so most rows in the full dated Excel will remain blank by design.
 
 What it does each run:
 - Writes dated outputs: `YYYYMMDD_vcp_scan.csv` and `YYYYMMDD_vcp_scan.xlsx`.
 - Finds the most recent prior dated scan CSV and computes `score_delta` from it.
-- Filters symbols where `score == 4`.
+- Filters symbols where `score >= 4`.
 - Orders filtered score>=4 exports by VCP score first and `trend_score` second.
 - Shows compact EMA regime fields for score>=4 rows in the Telegram message.
+- Supports a compact Telegram mode that sends counts instead of full new/existing/dropped score tables.
+- Can append a separate Fear & Greed text summary and optional chart images to the same Telegram push sequence.
+- Can append forecast AI Overview text messages from the local Playwright-based CLI after the filtered XLSX file.
 - Reuses cached metadata in exports and message rendering to reduce extra Yahoo requests.
 - Sends the result to `https://tgbot.www.vanportdev.com/msg/1348940059` with JSON body `{ "msg": "..." }`.

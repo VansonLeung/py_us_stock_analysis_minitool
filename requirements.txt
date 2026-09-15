@@ -4,3 +4,4 @@ yfinance>=0.2.40
 tqdm>=4.66
 requests>=2.31
 openpyxl>=3.1
+cnn-fear-greed-daily @ git+https://github.com/VansonLeung/tqqq_vs_fear_greed_fetch.git@93bd1bd370f13ec3db38108d6b84d5dfae46f843#subdirectory=codes/v1
