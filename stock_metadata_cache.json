@@ -33,6 +33,23 @@
     "metadata_note": "",
     "metadata_fetched_at": "2026-09-08T11:49:56Z"
   },
+  "ABCL": {
+    "symbol": "ABCL",
+    "company_name": "",
+    "sector": null,
+    "industry": null,
+    "business_summary": "",
+    "country": null,
+    "market_cap": null,
+    "beta": null,
+    "trailing_pe": null,
+    "forward_pe": null,
+    "short_ratio": null,
+    "next_earnings_date": null,
+    "metadata_status": "missing",
+    "metadata_note": "empty yfinance metadata after 1 attempts",
+    "metadata_fetched_at": "2026-09-15T15:47:30Z"
+  },
   "ABEV": {
     "symbol": "ABEV",
     "company_name": "",
@@ -49,6 +66,23 @@
     "metadata_status": "missing",
     "metadata_note": "empty yfinance metadata after 2 attempts",
     "metadata_fetched_at": "2026-09-15T12:17:52Z"
+  },
+  "ABLV": {
+    "symbol": "ABLV",
+    "company_name": "",
+    "sector": null,
+    "industry": null,
+    "business_summary": "",
+    "country": null,
+    "market_cap": null,
+    "beta": null,
+    "trailing_pe": null,
+    "forward_pe": null,
+    "short_ratio": null,
+    "next_earnings_date": null,
+    "metadata_status": "missing",
+    "metadata_note": "empty yfinance metadata after 1 attempts",
+    "metadata_fetched_at": "2026-09-15T15:47:31Z"
   },
   "ACH": {
     "symbol": "ACH",
@@ -236,6 +270,23 @@
     "metadata_status": "missing",
     "metadata_note": "empty yfinance metadata after 2 attempts",
     "metadata_fetched_at": "2026-09-15T12:17:58Z"
+  },
+  "ALLT": {
+    "symbol": "ALLT",
+    "company_name": "",
+    "sector": null,
+    "industry": null,
+    "business_summary": "",
+    "country": null,
+    "market_cap": null,
+    "beta": null,
+    "trailing_pe": null,
+    "forward_pe": null,
+    "short_ratio": null,
+    "next_earnings_date": null,
+    "metadata_status": "missing",
+    "metadata_note": "empty yfinance metadata after 1 attempts",
+    "metadata_fetched_at": "2026-09-15T15:47:33Z"
   },
   "AMSC": {
     "symbol": "AMSC",
@@ -985,6 +1036,23 @@
     "metadata_note": "empty yfinance metadata after 2 attempts",
     "metadata_fetched_at": "2026-09-15T12:18:28Z"
   },
+  "CPOP": {
+    "symbol": "CPOP",
+    "company_name": "",
+    "sector": null,
+    "industry": null,
+    "business_summary": "",
+    "country": null,
+    "market_cap": null,
+    "beta": null,
+    "trailing_pe": null,
+    "forward_pe": null,
+    "short_ratio": null,
+    "next_earnings_date": null,
+    "metadata_status": "missing",
+    "metadata_note": "empty yfinance metadata after 1 attempts",
+    "metadata_fetched_at": "2026-09-15T15:47:34Z"
+  },
   "CRDF": {
     "symbol": "CRDF",
     "company_name": "",
@@ -1120,6 +1188,40 @@
     "metadata_status": "ok",
     "metadata_note": "",
     "metadata_fetched_at": "2026-09-08T11:50:15Z"
+  },
+  "CVX": {
+    "symbol": "CVX",
+    "company_name": "",
+    "sector": null,
+    "industry": null,
+    "business_summary": "",
+    "country": null,
+    "market_cap": null,
+    "beta": null,
+    "trailing_pe": null,
+    "forward_pe": null,
+    "short_ratio": null,
+    "next_earnings_date": null,
+    "metadata_status": "missing",
+    "metadata_note": "empty yfinance metadata after 1 attempts",
+    "metadata_fetched_at": "2026-09-15T15:47:35Z"
+  },
+  "CWD": {
+    "symbol": "CWD",
+    "company_name": "",
+    "sector": null,
+    "industry": null,
+    "business_summary": "",
+    "country": null,
+    "market_cap": null,
+    "beta": null,
+    "trailing_pe": null,
+    "forward_pe": null,
+    "short_ratio": null,
+    "next_earnings_date": null,
+    "metadata_status": "missing",
+    "metadata_note": "empty yfinance metadata after 1 attempts",
+    "metadata_fetched_at": "2026-09-15T15:47:36Z"
   },
   "CZR": {
     "symbol": "CZR",
@@ -1324,6 +1426,23 @@
     "metadata_status": "ok",
     "metadata_note": "",
     "metadata_fetched_at": "2026-09-08T11:50:19Z"
+  },
+  "EJH": {
+    "symbol": "EJH",
+    "company_name": "",
+    "sector": null,
+    "industry": null,
+    "business_summary": "",
+    "country": null,
+    "market_cap": null,
+    "beta": null,
+    "trailing_pe": null,
+    "forward_pe": null,
+    "short_ratio": null,
+    "next_earnings_date": null,
+    "metadata_status": "missing",
+    "metadata_note": "empty yfinance metadata after 1 attempts",
+    "metadata_fetched_at": "2026-09-15T15:47:37Z"
   },
   "ELTK": {
     "symbol": "ELTK",
@@ -1733,6 +1852,23 @@
     "metadata_note": "",
     "metadata_fetched_at": "2026-09-08T11:50:27Z"
   },
+  "GAUZ": {
+    "symbol": "GAUZ",
+    "company_name": "",
+    "sector": null,
+    "industry": null,
+    "business_summary": "",
+    "country": null,
+    "market_cap": null,
+    "beta": null,
+    "trailing_pe": null,
+    "forward_pe": null,
+    "short_ratio": null,
+    "next_earnings_date": null,
+    "metadata_status": "missing",
+    "metadata_note": "empty yfinance metadata after 1 attempts",
+    "metadata_fetched_at": "2026-09-15T15:47:38Z"
+  },
   "GCTS": {
     "symbol": "GCTS",
     "company_name": "",
@@ -1954,6 +2090,23 @@
     "metadata_note": "",
     "metadata_fetched_at": "2026-09-13T22:02:06Z"
   },
+  "HYPR": {
+    "symbol": "HYPR",
+    "company_name": "",
+    "sector": null,
+    "industry": null,
+    "business_summary": "",
+    "country": null,
+    "market_cap": null,
+    "beta": null,
+    "trailing_pe": null,
+    "forward_pe": null,
+    "short_ratio": null,
+    "next_earnings_date": null,
+    "metadata_status": "missing",
+    "metadata_note": "empty yfinance metadata after 1 attempts",
+    "metadata_fetched_at": "2026-09-15T15:47:40Z"
+  },
   "IBN": {
     "symbol": "IBN",
     "company_name": "",
@@ -2005,6 +2158,23 @@
     "metadata_note": "",
     "metadata_fetched_at": "2026-09-13T22:02:08Z"
   },
+  "INOD": {
+    "symbol": "INOD",
+    "company_name": "",
+    "sector": null,
+    "industry": null,
+    "business_summary": "",
+    "country": null,
+    "market_cap": null,
+    "beta": null,
+    "trailing_pe": null,
+    "forward_pe": null,
+    "short_ratio": null,
+    "next_earnings_date": null,
+    "metadata_status": "missing",
+    "metadata_note": "empty yfinance metadata after 1 attempts",
+    "metadata_fetched_at": "2026-09-15T15:47:41Z"
+  },
   "INR": {
     "symbol": "INR",
     "company_name": "Infinity Natural Resources, Inc",
@@ -2038,6 +2208,40 @@
     "metadata_status": "ok",
     "metadata_note": "",
     "metadata_fetched_at": "2026-09-08T22:01:59Z"
+  },
+  "JF": {
+    "symbol": "JF",
+    "company_name": "",
+    "sector": null,
+    "industry": null,
+    "business_summary": "",
+    "country": null,
+    "market_cap": null,
+    "beta": null,
+    "trailing_pe": null,
+    "forward_pe": null,
+    "short_ratio": null,
+    "next_earnings_date": null,
+    "metadata_status": "missing",
+    "metadata_note": "empty yfinance metadata after 1 attempts",
+    "metadata_fetched_at": "2026-09-15T15:47:43Z"
+  },
+  "JZXN": {
+    "symbol": "JZXN",
+    "company_name": "Jiuzi Holdings, Inc.",
+    "sector": "Consumer Cyclical",
+    "industry": "Auto & Truck Dealerships",
+    "business_summary": "",
+    "country": "China",
+    "market_cap": null,
+    "beta": null,
+    "trailing_pe": null,
+    "forward_pe": null,
+    "short_ratio": 0.09,
+    "next_earnings_date": null,
+    "metadata_status": "ok",
+    "metadata_note": "",
+    "metadata_fetched_at": "2026-09-16T00:16:24Z"
   },
   "KMT": {
     "symbol": "KMT",
@@ -2124,6 +2328,23 @@
     "metadata_note": "",
     "metadata_fetched_at": "2026-09-08T22:02:00Z"
   },
+  "LION": {
+    "symbol": "LION",
+    "company_name": "",
+    "sector": null,
+    "industry": null,
+    "business_summary": "",
+    "country": null,
+    "market_cap": null,
+    "beta": null,
+    "trailing_pe": null,
+    "forward_pe": null,
+    "short_ratio": null,
+    "next_earnings_date": null,
+    "metadata_status": "missing",
+    "metadata_note": "empty yfinance metadata after 1 attempts",
+    "metadata_fetched_at": "2026-09-15T15:47:44Z"
+  },
   "LUCYW": {
     "symbol": "LUCYW",
     "company_name": "",
@@ -2208,6 +2429,23 @@
     "metadata_status": "missing",
     "metadata_note": "",
     "metadata_fetched_at": "2026-09-13T22:02:13Z"
+  },
+  "MDAI": {
+    "symbol": "MDAI",
+    "company_name": "Spectral AI, Inc.",
+    "sector": "Healthcare",
+    "industry": "Medical Devices",
+    "business_summary": "",
+    "country": "United States",
+    "market_cap": null,
+    "beta": null,
+    "trailing_pe": null,
+    "forward_pe": -1.6914895,
+    "short_ratio": 12.79,
+    "next_earnings_date": "2026-08-11",
+    "metadata_status": "ok",
+    "metadata_note": "",
+    "metadata_fetched_at": "2026-09-16T00:16:25Z"
   },
   "MDGL": {
     "symbol": "MDGL",
@@ -2429,6 +2667,23 @@
     "metadata_status": "ok",
     "metadata_note": "",
     "metadata_fetched_at": "2026-09-08T11:50:42Z"
+  },
+  "MSFT": {
+    "symbol": "MSFT",
+    "company_name": "",
+    "sector": null,
+    "industry": null,
+    "business_summary": "",
+    "country": null,
+    "market_cap": null,
+    "beta": null,
+    "trailing_pe": null,
+    "forward_pe": null,
+    "short_ratio": null,
+    "next_earnings_date": null,
+    "metadata_status": "missing",
+    "metadata_note": "empty yfinance metadata after 1 attempts",
+    "metadata_fetched_at": "2026-09-15T15:47:45Z"
   },
   "MSGM": {
     "symbol": "MSGM",
@@ -2787,6 +3042,23 @@
     "metadata_note": "",
     "metadata_fetched_at": "2026-09-08T11:50:48Z"
   },
+  "OPLN": {
+    "symbol": "OPLN",
+    "company_name": "",
+    "sector": null,
+    "industry": null,
+    "business_summary": "",
+    "country": null,
+    "market_cap": null,
+    "beta": null,
+    "trailing_pe": null,
+    "forward_pe": null,
+    "short_ratio": null,
+    "next_earnings_date": null,
+    "metadata_status": "missing",
+    "metadata_note": "empty yfinance metadata after 1 attempts",
+    "metadata_fetched_at": "2026-09-15T15:47:46Z"
+  },
   "ORN": {
     "symbol": "ORN",
     "company_name": "Orion Group Holdings, Inc.",
@@ -2820,6 +3092,23 @@
     "metadata_status": "missing",
     "metadata_note": "empty yfinance metadata after 2 attempts",
     "metadata_fetched_at": "2026-09-15T12:19:18Z"
+  },
+  "PACB": {
+    "symbol": "PACB",
+    "company_name": "",
+    "sector": null,
+    "industry": null,
+    "business_summary": "",
+    "country": null,
+    "market_cap": null,
+    "beta": null,
+    "trailing_pe": null,
+    "forward_pe": null,
+    "short_ratio": null,
+    "next_earnings_date": null,
+    "metadata_status": "missing",
+    "metadata_note": "empty yfinance metadata after 1 attempts",
+    "metadata_fetched_at": "2026-09-15T15:47:47Z"
   },
   "PAG": {
     "symbol": "PAG",
@@ -3926,6 +4215,40 @@
     "metadata_note": "empty yfinance metadata after 2 attempts",
     "metadata_fetched_at": "2026-09-15T12:19:55Z"
   },
+  "TC": {
+    "symbol": "TC",
+    "company_name": "",
+    "sector": null,
+    "industry": null,
+    "business_summary": "",
+    "country": null,
+    "market_cap": null,
+    "beta": null,
+    "trailing_pe": null,
+    "forward_pe": null,
+    "short_ratio": null,
+    "next_earnings_date": null,
+    "metadata_status": "missing",
+    "metadata_note": "empty yfinance metadata after 1 attempts",
+    "metadata_fetched_at": "2026-09-15T15:47:48Z"
+  },
+  "TCPC": {
+    "symbol": "TCPC",
+    "company_name": "",
+    "sector": null,
+    "industry": null,
+    "business_summary": "",
+    "country": null,
+    "market_cap": null,
+    "beta": null,
+    "trailing_pe": null,
+    "forward_pe": null,
+    "short_ratio": null,
+    "next_earnings_date": null,
+    "metadata_status": "missing",
+    "metadata_note": "empty yfinance metadata after 1 attempts",
+    "metadata_fetched_at": "2026-09-15T15:47:50Z"
+  },
   "TDAY": {
     "symbol": "TDAY",
     "company_name": "",
@@ -4096,6 +4419,23 @@
     "metadata_note": "",
     "metadata_fetched_at": "2026-09-08T22:02:05Z"
   },
+  "TVGN": {
+    "symbol": "TVGN",
+    "company_name": "Tevogen Inc.",
+    "sector": "Healthcare",
+    "industry": "Biotechnology",
+    "business_summary": "",
+    "country": "United States",
+    "market_cap": null,
+    "beta": null,
+    "trailing_pe": null,
+    "forward_pe": null,
+    "short_ratio": 7.41,
+    "next_earnings_date": null,
+    "metadata_status": "ok",
+    "metadata_note": "",
+    "metadata_fetched_at": "2026-09-16T00:16:25Z"
+  },
   "TWOD": {
     "symbol": "TWOD",
     "company_name": "Two Harbors Investments Corp 9.",
@@ -4249,6 +4589,23 @@
     "metadata_note": "",
     "metadata_fetched_at": "2026-09-08T11:51:17Z"
   },
+  "VNOM": {
+    "symbol": "VNOM",
+    "company_name": "",
+    "sector": null,
+    "industry": null,
+    "business_summary": "",
+    "country": null,
+    "market_cap": null,
+    "beta": null,
+    "trailing_pe": null,
+    "forward_pe": null,
+    "short_ratio": null,
+    "next_earnings_date": null,
+    "metadata_status": "missing",
+    "metadata_note": "empty yfinance metadata after 1 attempts",
+    "metadata_fetched_at": "2026-09-15T15:47:51Z"
+  },
   "VPG": {
     "symbol": "VPG",
     "company_name": "",
@@ -4265,6 +4622,23 @@
     "metadata_status": "missing",
     "metadata_note": "",
     "metadata_fetched_at": "2026-09-13T22:02:39Z"
+  },
+  "VRA": {
+    "symbol": "VRA",
+    "company_name": "",
+    "sector": null,
+    "industry": null,
+    "business_summary": "",
+    "country": null,
+    "market_cap": null,
+    "beta": null,
+    "trailing_pe": null,
+    "forward_pe": null,
+    "short_ratio": null,
+    "next_earnings_date": null,
+    "metadata_status": "missing",
+    "metadata_note": "empty yfinance metadata after 1 attempts",
+    "metadata_fetched_at": "2026-09-15T15:47:52Z"
   },
   "VST": {
     "symbol": "VST",
@@ -4385,6 +4759,23 @@
     "metadata_note": "",
     "metadata_fetched_at": "2026-09-08T11:51:20Z"
   },
+  "WFF": {
+    "symbol": "WFF",
+    "company_name": "",
+    "sector": null,
+    "industry": null,
+    "business_summary": "",
+    "country": null,
+    "market_cap": null,
+    "beta": null,
+    "trailing_pe": null,
+    "forward_pe": null,
+    "short_ratio": null,
+    "next_earnings_date": null,
+    "metadata_status": "missing",
+    "metadata_note": "empty yfinance metadata after 1 attempts",
+    "metadata_fetched_at": "2026-09-15T15:47:53Z"
+  },
   "WIX": {
     "symbol": "WIX",
     "company_name": "",
@@ -4418,6 +4809,23 @@
     "metadata_status": "ok",
     "metadata_note": "",
     "metadata_fetched_at": "2026-09-08T11:51:21Z"
+  },
+  "WMG": {
+    "symbol": "WMG",
+    "company_name": "",
+    "sector": null,
+    "industry": null,
+    "business_summary": "",
+    "country": null,
+    "market_cap": null,
+    "beta": null,
+    "trailing_pe": null,
+    "forward_pe": null,
+    "short_ratio": null,
+    "next_earnings_date": null,
+    "metadata_status": "missing",
+    "metadata_note": "empty yfinance metadata after 1 attempts",
+    "metadata_fetched_at": "2026-09-15T15:47:55Z"
   },
   "WYY": {
     "symbol": "WYY",
@@ -4469,6 +4877,23 @@
     "metadata_status": "ok",
     "metadata_note": "",
     "metadata_fetched_at": "2026-09-08T11:51:22Z"
+  },
+  "ZION": {
+    "symbol": "ZION",
+    "company_name": "",
+    "sector": null,
+    "industry": null,
+    "business_summary": "",
+    "country": null,
+    "market_cap": null,
+    "beta": null,
+    "trailing_pe": null,
+    "forward_pe": null,
+    "short_ratio": null,
+    "next_earnings_date": null,
+    "metadata_status": "missing",
+    "metadata_note": "empty yfinance metadata after 1 attempts",
+    "metadata_fetched_at": "2026-09-15T15:47:56Z"
   },
   "ZONE": {
     "symbol": "ZONE",
